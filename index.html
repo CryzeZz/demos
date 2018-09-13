@@ -7,6 +7,7 @@
 	<script type="text/javascript" src="/hisui/dist/js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="/hisui/dist/js/jquery.hisui.js"></script>	
     <script type="text/javascript" src="/hisui/dist/js/locale/hisui-lang-zh_CN.js"></script>
+    <script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
     <style>
         .hisui-accordion ul {
             list-style: none;
@@ -392,6 +393,17 @@
             if(location.href.indexOf("dev=1")==-1){
                 $('#accd').accordion('remove','测试');
             }
+            if(location.href.indexOf("tab=")>0){
+                var tabName=location.href.split("tab=")[1].split("&")[0].split("#")[0];
+                $('.api-navi-tab').each(function(){
+                    var title = $(this).text();
+                    if (title==tabName){
+                        $(this).trigger('click');
+                    }
+                })
+            }
+            
+
             $('#tabs').tabs("options").onSelect=function(title,index){
                 $(".api-navi-tab").each(function(){
                     $(this).closest("li").removeClass('active');
@@ -400,10 +412,22 @@
                     }
                 });
             }
+            var clipboard = new ClipboardJS('#mm-tabupdate', {
+                text: function() {
+                    var title=$('#mm').data("currtab");
+                    var href=location.href;
+                    href=href.split("?")[0]+"?tab="+title;
+                    console.log(href);
+                    $.messager.popover({msg: '复制成功',type:'success',timeout: 1000});
+                    return href;
+                }
+            });
+            
         });	
     </script>
     <div id="mm" class="hisui-menu cs-tab-menu">
         <div id="mm-tabupdate" onclick="tabCloseEven.tabupdate();">刷新</div>
+        <div id="mm-tabcopylink" >复制链接</div>
         <div class="menu-sep" ></div>
         <div id="mm-tabclose" onclick="tabCloseEven.tabclose();">关闭</div>
         <div id="mm-tabcloseother" onclick="tabCloseEven.tabcloseother();">关闭其他</div>

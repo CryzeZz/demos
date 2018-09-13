@@ -5,16 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link id="themecss" rel="stylesheet" type="text/css" href="http://zhangxiang.me/hisui/dist/css/hisui.min.css">
-	<script type="text/javascript" src="http://zhangxiang.me/hisui/dist/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="http://zhangxiang.me/hisui/dist/js/jquery.hisui.js"></script>	
-    <script type="text/javascript" src="http://zhangxiang.me/hisui/dist/js/locale/hisui-lang-zh_CN.js"></script>
+    <link id="themecss" rel="stylesheet" type="text/css" href="/hisui/dist/css/hisui.min.css">
+	<script type="text/javascript" src="/hisui/dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/hisui/dist/js/jquery.hisui.js"></script>	
+    <script type="text/javascript" src="/hisui/dist/js/locale/hisui-lang-zh_CN.js"></script>
 </head>
 <body>
-    <table id="tProvince"></table>
+    <p>
+        datagrid 初始化两次，两次load数据url都会按照第二次的url进行load,而两次参数queryParams却是各用各的
+        <br />
+        特修复一下:如果第一次url为空肯定不去load数据
+    </p>
+        
+    <p style="color:red;">
+        最好的办法应是避免同时使用class和js初始化datagrid
+    </p>
+    <table id="tProvince" class="hisui-datagrid" url="1" data-options="
+        onBeforeLoad:function(p){
+            p.tip='第一次初始化url为1';
+        },title:'第一次初始化url为1'
+        ">
+    </table>
+    <table id="tProvince2" class="hisui-datagrid" data-options="
+        onBeforeLoad:function(p){
+            p.tip='第一次初始化url为null';
+        },title:'第一次初始化url为null'
+        ">
+    </table>
     <script type="text/javascript">
         $(function(){
-            $('#tProvince').datagrid({
+            $('#tProvince,#tProvince2').datagrid({
                 url:'http://zhangxiang.me/data/getAreaData',
                 columns:[[
                     {field:'name',title:'名称',width:'100'},
@@ -27,9 +47,11 @@
                 singleSelect:true,
                 idField:'name',
                 rownumbers:true,
-                title:'省份表'
+                //title:'省份表',
+                height:300
+
             })
-            console.log($('#tProvince').datagrid('getRows'));
+            
         })    
     </script>
 </body>

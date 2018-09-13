@@ -3,10 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>HISUI DEMO</title>
-	<link id="themecss" rel="stylesheet" type="text/css" href="http://zhangxiang.me/hisui/dist/css/hisui.min.css">
-	<script type="text/javascript" src="http://zhangxiang.me/hisui/dist/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="http://zhangxiang.me/hisui/dist/js/jquery.hisui.js"></script>	
-    <script type="text/javascript" src="http://zhangxiang.me/hisui/dist/js/locale/hisui-lang-zh_CN.js"></script>
+	<link id="themecss" rel="stylesheet" type="text/css" href="/hisui/dist/css/hisui.min.css">
+	<script type="text/javascript" src="/hisui/dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/hisui/dist/js/jquery.hisui.js"></script>	
+    <script type="text/javascript" src="/hisui/dist/js/locale/hisui-lang-zh_CN.js"></script>
     <style>
         .hisui-accordion ul {
             list-style: none;
@@ -133,9 +133,9 @@
     </div>-->
     <div region="west" border="true" split="true" title="HISUI组件"  style="width:200px;padding:0px;">                
         <div id="accd" class="hisui-accordion" fit="true" data-options="border:false">
-            <div title="Chapter 1" style="background-color:#F9F9F9;">
+            <div title="数据表格(datagrid)" style="background-color:#F9F9F9;">
                 <ul>
-                    <li><a href="javascript:void(0);"  src="html/datagrid.1.html" class="api-navi-tab">数据表格</a></li>
+                    <li><a href="javascript:void(0);"  src="html/datagrid.1.html" class="api-navi-tab">load问题</a></li>
                 </ul>
             </div>
             <div title="测试" style="background-color:#F9F9F9;">
@@ -324,7 +324,7 @@
             }
         }
         function changeApiTheme(){
-            $('#themecss').attr('href','http://zhangxiang.me/hisui/dist/css/'+themecss);
+            $('#themecss').attr('href','/hisui/dist/css/'+themecss);
             for (var i=0;i<window.frames.length;i++){
                 if(typeof window.frames[i].changeTheme=="function"){
                     window.frames[i].changeTheme(themecss);

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link id="themecss" rel="stylesheet" type="text/css" href="http://zhangxiang.me/hisui/dist/css/hisui.min.css">
+	<script type="text/javascript" src="http://zhangxiang.me/hisui/dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="http://zhangxiang.me/hisui/dist/js/jquery.hisui.js"></script>	
+    <script type="text/javascript" src="http://zhangxiang.me/hisui/dist/js/locale/hisui-lang-zh_CN.js"></script>
+</head>
+<body>
+    <table id="tProvince"></table>
+    <script type="text/javascript">
+        $(function(){
+            $('#tProvince').datagrid({
+                url:'http://zhangxiang.me/data/getAreaData',
+                columns:[[
+                    {field:'name',title:'名称',width:'100'},
+                    {field:'spell',title:'简拼',width:'100',formatter:function(v,row){
+                        return $.hisui.toChineseSpell(row.name);
+                    }}
+                ]],
+                pagination: true,
+                striped:true,
+                singleSelect:true,
+                idField:'name',
+                rownumbers:true,
+                title:'省份表'
+            })
+            console.log($('#tProvince').datagrid('getRows'));
+        })    
+    </script>
+</body>
+</html>

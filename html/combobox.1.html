@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link id="themecss" rel="stylesheet" type="text/css" href="/hisui/dist/css/hisui.min.css">
+	<script type="text/javascript" src="/hisui/dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/hisui/dist/js/jquery.hisui.js"></script>	
+    <script type="text/javascript" src="/hisui/dist/js/locale/hisui-lang-zh_CN.js"></script>
+    <style>
+        span.label{
+            padding: 0 10px 0 30px;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h2>combobox 级联选择</h2>
+    <div style="border:1px solid #ccc;margin: 10px 10px0;border-radius: 4px;padding: 20px">
+        <span class="label">省</span>
+        <input type="text" id="tProvince"/>
+        <span class="label">市</span>
+        <input type="text" id="tCity"/>
+        <span class="label">区</span>
+        <input type="text" id="tArea"/>
+    </div>
+    <script type="text/javascript">
+        $(function(){
+            $('#tProvince').combobox({
+                url:'http://zhangxiang.me/data/getAreaData?ResultSetType=array',
+                valueField:'name',
+                textField:'name',
+                mode:'remote',
+                onBeforeLoad:function(p){
+                    p.desc=p.q;
+                },
+                onChange:function(){
+                    $('#tCity').combobox('clear');
+                    $('#tArea').combobox('clear');
+                    setTimeout(function(){
+                        $('#tCity').combobox('options').keyHandler.query.call($('#tCity')[0],"");
+                        //$('#tArea').combobox('options').keyHandler.query.call($('#tArea')[0],"");
+                    },0)
+                    
+                    
+                    
+                }
+            })
+            $('#tCity').combobox({
+                url:'http://zhangxiang.me/data/getAreaData?ResultSetType=array',
+                valueField:'name',
+                textField:'name',
+                mode:'remote',
+                onBeforeLoad:function(p){
+                    p.desc=p.q;
+                    p.province=$('#tProvince').combobox('getText')||'**';
+                },
+                onChange:function(){
+                    $('#tArea').combobox('clear');
+                    setTimeout(function(){
+                        $('#tArea').combobox('options').keyHandler.query.call($('#tArea')[0],"");
+                    },0)
+                }
+            })
+            $('#tArea').combobox({
+                url:'http://zhangxiang.me/data/getAreaData?ResultSetType=array',
+                valueField:'name',
+                textField:'name',
+                mode:'remote',
+                onBeforeLoad:function(p){
+                    p.desc=p.q;
+                    p.province=$('#tProvince').combobox('getText')||'**';
+                    p.city=$('#tCity').combobox('getText')||'**';
+                }
+            })
+        })    
+    </script>
+</body>
+</html>

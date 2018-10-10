@@ -30,7 +30,7 @@
         $(function(){
             $('#tProvince').combobox({
                 url:'http://zhangxiang.me/data/getAreaData?ResultSetType=array',
-                valueField:'name',
+                valueField:'id',
                 textField:'name',
                 mode:'remote',
                 onBeforeLoad:function(p){
@@ -43,14 +43,12 @@
                         $('#tCity').combobox('options').keyHandler.query.call($('#tCity')[0],"");
                         //$('#tArea').combobox('options').keyHandler.query.call($('#tArea')[0],"");
                     },0)
-                    
-                    
-                    
-                }
+                },
+                value:''
             })
             $('#tCity').combobox({
                 url:'http://zhangxiang.me/data/getAreaData?ResultSetType=array',
-                valueField:'name',
+                valueField:'id',
                 textField:'name',
                 mode:'remote',
                 onBeforeLoad:function(p){
@@ -66,7 +64,7 @@
             })
             $('#tArea').combobox({
                 url:'http://zhangxiang.me/data/getAreaData?ResultSetType=array',
-                valueField:'name',
+                valueField:'id',
                 textField:'name',
                 mode:'remote',
                 onBeforeLoad:function(p){

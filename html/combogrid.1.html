@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link id="themecss" rel="stylesheet" type="text/css" href="/hisui/dist/css/hisui.min.css">
+	<script type="text/javascript" src="/hisui/dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/hisui/dist/js/jquery.hisui.js"></script>	
+    <script type="text/javascript" src="/hisui/dist/js/locale/hisui-lang-zh_CN.js"></script>
+</head>
+<body>
+    <h2>combogrid setValue</h2>
+    <div style="border:1px solid #ccc;margin: 10px 10px0;border-radius: 4px;padding: 20px">
+        <span class="label">省</span>
+        <input type="text" id="tProvince"/>  <a class="hisui-linkbutton" id="btn">获取value text</a>
+
+        <li style="padding:5px;"> <a class="hisui-linkbutton" id="btn1">33-香港</a> setValue  </li>
+        <li style="padding:5px;"> <a class="hisui-linkbutton" id="btn2">32-澳门</a> setValue ,setText</li>
+        <li style="padding:5px;"> <a class="hisui-linkbutton" id="btn3">31-台湾省</a> load ,setValue ,setText  </li>
+        <li style="padding:5px;"> <a class="hisui-linkbutton" id="btn4">30-新疆</a> 在onLoadSuccess处理   </li>
+    </div>
+
+    <script type="text/javascript">
+        $(function(){
+            $('#tProvince').combogrid({
+                url:'http://zhangxiang.me/data/getAreaData',
+                idField:'id',
+                textField:'name',
+                columns:[[
+                    {field:'name',title:'名称',width:'100'},
+                    {field:'spell',title:'简拼',width:'100',formatter:function(v,row){
+                        return $.hisui.toChineseSpell(row.name);
+                    }}
+                ]],
+                onBeforeLoad:function(param){
+                    param.desc=param.q;
+                },
+                mode:'remote',
+                pagination: true,
+                striped:true,
+                singleSelect:true,
+                rownumbers:true,
+                panelWidth:500,
+                panelHeight:300,
+                onLoadSuccess:function(data){
+                    alert('本页数据条数：'+data.rows.length);
+                }
+            })
+
+            $('#btn1').click(function(){
+                $('#tProvince').combogrid('setValue',33);
+            })
+            $('#btn2').click(function(){
+                $('#tProvince').combogrid('setValue',32).combogrid('setText','澳门');
+            })
+            $('#btn3').click(function(){
+                $('#tProvince').combogrid('options').keyHandler.query.call($('#tProvince')[0],"台湾省");
+                $('#tProvince').combogrid('setValue',31).combogrid('setText','台湾省');
+            })
+            $('#btn4').click(function(){
+                var temp=$('#tProvince').combogrid('options').onLoadSuccess;
+                $('#tProvince').combogrid('options').onLoadSuccess=function(){
+                    $(this).combogrid('setValue',30);
+                    temp.apply(this,arguments);
+                    $(this).combogrid('options').onLoadSuccess=temp;
+                };
+                $('#tProvince').combogrid('options').keyHandler.query.call($('#tProvince')[0],"新疆");
+                
+            })
+            $('#btn').click(function(){
+                var val=$('#tProvince').combogrid('getValue');
+                var text=$('#tProvince').combogrid('getText');
+                alert(val+'-'+text);
+            })
+        })    
+    </script>
+</body>
+</html>

@@ -43,8 +43,7 @@
                         $('#tCity').combobox('options').keyHandler.query.call($('#tCity')[0],"");
                         //$('#tArea').combobox('options').keyHandler.query.call($('#tArea')[0],"");
                     },0)
-                },
-                value:''
+                }
             })
             $('#tCity').combobox({
                 url:'http://zhangxiang.me/data/getAreaData?ResultSetType=array',
@@ -60,7 +59,8 @@
                     setTimeout(function(){
                         $('#tArea').combobox('options').keyHandler.query.call($('#tArea')[0],"");
                     },0)
-                }
+                },
+                queryOnFirstArrowDown:true
             })
             $('#tArea').combobox({
                 url:'http://zhangxiang.me/data/getAreaData?ResultSetType=array',
@@ -71,7 +71,8 @@
                     p.desc=p.q;
                     p.province=$('#tProvince').combobox('getText')||'**';
                     p.city=$('#tCity').combobox('getText')||'**';
-                }
+                },
+                queryOnFirstArrowDown:true
             })
         })    
     </script>

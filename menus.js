@@ -82,6 +82,11 @@ var menus=[
                 attributes:{
                     url:'babel/babel.html'
                 }
+            },{
+                text:'tts',
+                attributes:{
+                    url:'tts/tts.html'
+                }
             }
         ]
     },{

@@ -38,9 +38,15 @@ function tabClose() {
         if (subtitle == "首页") {
             $('#mm').menu('disableItem', $('#mm-tabupdate')[0]);
             $('#mm').menu('disableItem', $('#mm-tabclose')[0]);
+
+            $('#mm').menu('disableItem', $('#mm-tabcopylink')[0]);
+            $('#mm').menu('disableItem', $('#mm-tabopenblank')[0]);
         } else {
             $('#mm').menu('enableItem', $('#mm-tabupdate')[0]);
             $('#mm').menu('enableItem', $('#mm-tabclose')[0]);
+
+            $('#mm').menu('enableItem', $('#mm-tabcopylink')[0]);
+            $('#mm').menu('enableItem', $('#mm-tabopenblank')[0]);
         }
 
         var leftnum = $('.tabs-selected').prevAll().length;
@@ -84,6 +90,14 @@ var tabCloseEven = {
                     content: createFrame(url)
                 }
             })
+        }
+    },
+    //新窗口打开
+    tabopenblank:function(){
+        var currTab = $('#tabs').tabs('getSelected');
+        var url = $(currTab.panel('options').content).attr('src');
+        if (url != undefined && currTab.panel('options').title != '首页') {
+            window.open(url,currTab.panel('options').title );
         }
     },
     //关闭当前

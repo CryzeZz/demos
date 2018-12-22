@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>tts</title>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            padding: 10px;
+        }
+        textarea{
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px;
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <textarea class="form-control" rows="5" id="content" placeholder="内容"></textarea>
+
+            <form class="form-inline" style="margin:10px 0;">
+                <div class="form-group">
+                    <label for="Rate">语速</label>
+                    <select class="form-control" id="Rate" ></select>
+                </div>
+                <div class="form-group" style="margin-left: 20px;">
+                    <label for="Volume">音量</label>
+                    <select class="form-control" id="Volume" ></select>
+                </div>
+
+
+
+                    <div class="form-group" style="margin-left: 20px;">
+                            <label for="Voice">声音</label>
+                            <select class="form-control" id="Voice" ></select>
+                        </div>
+
+                        <div class="form-group" style="margin-left: 20px;">
+                                <label for="AudioOutput">音频输出</label>
+                                <select class="form-control" id="AudioOutput" ></select>
+                            </div>
+            </form>
+
+            <a class="btn btn-default" href="#" role="button" id='play'>播放</a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function(){
+            var voiceObj;
+            try{
+                voiceObj=new ActiveXObject("Sapi.SpVoice");
+                voiceObj.Rate=-1;  //语速
+                voiceObj.Volume=60;   //音量
+            }catch(e){
+                $('<div class="alert alert-danger" role="alert">请使用IE浏览器打开，并且允许ActiveX运行！</div>').prependTo('body');
+            }
+            if(!voiceObj) return;
+
+            for(var i=-10;i<=10;i++){
+                $('<option value="'+i+'">'+i+'</option>').appendTo('#Rate');
+            }
+            $('#Rate').val(2);
+
+            for(var i=0;i<=100;i++){
+                $('<option value="'+i+'">'+i+'</option>').appendTo('#Volume');
+            }
+            $('#Volume').val(80);
+
+            var VoicesToken = voiceObj.GetVoices();
+            for(var i = 0; i < VoicesToken.Count; i++) {
+                $('<option value="'+i+'">'+VoicesToken.Item(i).GetDescription()+'</option>').appendTo('#Voice');
+            }
+            var AudioOutputsToken = voiceObj.GetAudioOutputs();
+            for(var i = 0; i < AudioOutputsToken.Count; i++) {
+                $('<option value="'+i+'">'+AudioOutputsToken.Item(i).GetDescription()+'</option>').appendTo('#AudioOutput');
+            }
+
+            
+
+
+
+            $('#play').click(function(){
+                var content=$('#content').val();
+                var rate=parseInt( $('#Rate').val() );
+                var volume=parseInt( $('#Volume').val() );
+                var voice= VoicesToken.Item( parseInt( $('#Voice').val() ) );
+                var audioOutput=AudioOutputsToken.Item( parseInt( $('#AudioOutput').val() ) );
+
+                if (content=="") content='内容不能为空';
+
+                voiceObj.Rate=rate;  //语速
+                voiceObj.Volume=volume;   //音量
+
+                voiceObj.Voice=voice;
+                voiceObj.AudioOutput=audioOutput;
+
+
+                voiceObj.Speak(content,1);
+                return false;
+            })
+
+
+        })
+
+    </script>
+</body>
+</html>

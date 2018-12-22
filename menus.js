@@ -52,7 +52,7 @@ var menus=[
             },{
                 text:'uploadify跨域',
                 attributes:{
-                    url:'//'+location.host+':81/upload/uploadify.html'
+                    url:'http://'+location.host+':81/upload/uploadify.html'
                 }
             }
         ]

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>-->
+	<script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+	
+</head>
+<body>
+    <script type="text/babel">
+        /** @jsx hyperScript **/
+        //默认会调用React.createElement
+        var vdom=(
+            <div>
+                <p>第一段</p>
+                <p>第二段</p>
+            </div>
+        )
+
+        function hyperScript(nodeName,props,...children) {
+            children=children.length==1 && children[0].push?children[0]:children;
+            return {nodeName,props,children};
+        }
+        function render(vdom,dom){
+            function v2r(vdom){
+                if (vdom.split) return document.createTextNode(vdom);
+                var dom=document.createElement(vdom.nodeName);
+                var props=vdom.props||{};
+                Object.keys(props).forEach(k => dom.setAttribute(k,props[k]));
+                vdom.children.forEach(c => dom.appendChild(v2r(c)));
+                return dom;
+            }
+            dom.appendChild(v2r(vdom));
+        }
+        console.log(vdom);
+        render(vdom,document.body);
+
+        function img(title){
+            return <a href="https://baidu.com" title={title} target="_blank"><img src="https://www.baidu.com/img/baidu_jgylogo3.gif"></img></a>
+
+        }
+        render((<div></div>),document.body);
+        render(img('跳转到百度'),document.body);
+    </script>
+</body>
+</html>

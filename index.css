@@ -1,0 +1,6 @@
+#tabs>.tabs-panels>.panel>.panel-body {
+    overflow: hidden;
+}
+.accordiontree.tree {
+    border: 0;
+}

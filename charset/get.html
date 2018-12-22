@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="GB18030">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--<script src="./gbUrlProvider.js" type="text/javascript"></script>-->
+    <script src="http://qn.zhangxiang.me/gbUrlProvider.js" type="text/javascript"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+<body>
+    <p >username为：</p>
+    <p id="username"></p>
+    <script type="text/javascript">
+        var p=document.getElementById('username');
+
+        p.innerText=getQuery("username");
+        function getQuery(key){
+            var href=location.href;
+            var query=href.split("?")[1]||"";
+            var arr=query.split("&");
+            for(var i=0;i<arr.length;i++){
+                if (arr[i].split("=")[0]==key){
+                    var value=arr[i].split("=")[1];
+                    return gbUrlDecode(value);
+                }
+            }
+        }
+    </script>
+	<div style="width:1250px;padding:20px">
+		<div style="width:50px;display:table-cell;"></div>
+		<div style="width:550px;display:table-cell;border:1px solid #40a2de;padding:20px;">
+			<textarea id="t1"></textarea>
+			<p>
+				<button class="encode" >gbUrlEncode</button>
+				<button class="encode">encodeURI</button>
+				<button class="encode">encodeURIComponent</button>
+				<button class="encode">escape</button>
+
+			</p>
+			<textarea id="t2"></textarea>
+			<p id="e1" style="color:red;"></p>
+		</div>
+		<div style="width:50px;display:table-cell;"></div>
+		<div style="width:550px;display:table-cell;border:1px solid #40a2de;padding:20px;margin-left:50px;">
+			<textarea id="t3"></textarea>
+			<p>
+				<button class="decode">gbUrlDecode</button>
+				<button class="decode">decodeURI</button>
+				<button class="decode">decodeURIComponent</button>
+				<button class="decode">unescape</button>
+			</p>
+			<textarea id="t4"></textarea>
+			<p id="e2" style="color:red;"></p>
+		</div>
+	</div>
+	<script type="text/javascript">
+        $(function(){
+			$('textarea').css({width:'100%',height:'50px',lineHeight:'24px'});
+			$('.encode').click(function(){
+				var t1=$('#t1').val();
+				var fn=$(this).text();
+				try{
+					var t2=window[fn](t1);
+					$('#t2').val(t2);
+				}catch(e){
+					$('#e2').text(String(e));
+				}
+				
+				
+				
+			})
+			$('.decode').click(function(){
+				var t3=$('#t3').val();
+				var fn=$(this).text();
+				try{
+					var t4=window[fn](t3);
+					$('#t4').val(t4);
+				}catch(e){
+					$('#e2').text(String(e));
+				}
+			})
+		})
+    </script>
+</body>
+</html>

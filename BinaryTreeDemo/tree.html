@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div.tree {
+		  display: flex;
+		  flex-wrap: wrap;/*span 需要独占一行，所以此 flex 布局必须要折行显示 */
+		  align-items: flex-start;
+		}
+		div.tree > span {
+			width: 100%;
+			text-align: center;
+			border: 1px gray dashed;
+			box-sizing: border-box;
+			margin: 2px;
+			height: 30px;
+			line-height: 30px;
+		}
+		.tree > .tree {
+		  width: 50%;
+		}
+		.leaf:not(.null-leaf){
+			background:#efdede;
+		}
+		#screen{
+			border: 1px blue dashed;
+			margin: 5px 0;
+			padding: 0 10px;
+			line-height:30px;
+			min-height:30px;
+		}
+	</style>
+</head>
+<body>
+	<div id="main"></div>
+	<div id="op">
+		<input type="button" value="生成Tree" onclick="genTreeFromHtml()" style="display:none;"/><!--根据html生成js全局Tree对象root 不需要了 每次修改blur事件 都会自动修改root-->
+		<input type="button" value="先序遍历" onclick="printPreorder()"/>
+		<input type="button" value="中序遍历" onclick="printInorder()"/>
+		<input type="button" value="后序遍历" onclick="printPostorder()"/>
+		<input type="button" value="层级遍历" onclick="printLevelorder()"/>
+		<input type="button" value="打印所有路径" onclick="printAllPath()"/>
+	</div>
+	<div id="screen"></div>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="tree.js"></script>
+</body>
+</html>

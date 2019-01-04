@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./uploadify3.2.1/css/uploadify.css" />
+	<style>
+		.uploadify-button-a {
+			background-color: #efefef;
+			background-image: none;
+			color: blue;
+			text-shadow: none;
+			border: none;
+			border-radius: 0px;
+		}
+
+		.uploadify:hover .uploadify-button-a {
+			background-color: #dddddd;
+			background-image: none;
+		}
+
+		#uploader {
+			border: 1px solid #40a2de;
+			width: 400px;
+			height: 30px;
+			line-height: 28px;
+			margin: 0 10px 0 10px;
+			padding: 0 5px;
+			font-size: 14px;
+		}
+
+		#flash-tip {
+			padding: 15px;
+			margin-bottom: 20px;
+			border: 1px solid transparent;
+			border-radius: 4px;
+			color: #a94442;
+			background-color: #f2dede;
+			border-color: #ebccd1;
+		}
+	</style>
+	<script type="text/javascript" src="./uploadify3.2.1/uploadify.swf" charset="utf-8"></script>
+	<script type="text/javascript" src="./uploadify3.2.1/jquery.uploadify.min.js" charset="utf-8"></script>
+
+</head>
+
+<body>
+	<div id="flash-tip" style="padding:10px;display:none;">
+		<!--这样就可以让谷歌浏览器弹出启用flash提示 from熊猫直播-->
+		您尚未启用或安装flash<a target="_blank" href="https://get.adobe.com/cn/flashplayer/update/osx/">点击安装</a>
+	</div>
+	<p style="line-height:30px;margin-bottom:20px;margin-top:10px;">
+		uploader<input type="text" id="uploader" value="http://zhangxiang.me/filemgr/upload" style=""> <button id="changeUploader">切换uploader</button>
+	</p>
+	<input type="file" name="uploadify" id="uploadify" />
+	<ul></ul>
+	<script type="text/javascript" src="./index.js"></script>
+</body>
+
+</html>

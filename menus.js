@@ -54,6 +54,11 @@ var menus=[
                 attributes:{
                     url:'http://'+location.host+':81/upload/uploadify.html'
                 }
+            },{
+                text:'jquery-cropper',
+                attributes:{
+                    url:'cropper/index.html'
+                }
             }
         ]
     },{

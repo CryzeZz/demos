@@ -95,6 +95,19 @@ var menus=[
             }
         ]
     },{
+        text:'工具',
+        attributes:{
+            url:'',
+        },
+        children:[
+            {
+                text:'pdf2html',
+                attributes:{
+                    url:'/filemgr/pdf2html'
+                }
+            }
+        ]
+    },{
         text:'管理',
         attributes:{
             url:'',

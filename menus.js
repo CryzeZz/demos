@@ -105,6 +105,11 @@ var menus=[
                 attributes:{
                     url:'/filemgr/pdf2html'
                 }
+            },{
+                text:'密码管理',
+                attributes:{
+                    url:'/filemgr/pm/view/index'
+                }
             }
         ]
     },{
@@ -122,6 +127,11 @@ var menus=[
                 text:'git pull hisui',
                 attributes:{
                     url:'/filemgr/pull?repo=hisui'
+                }
+            },{
+                text:'退出',
+                attributes:{
+                    url:'/filemgr/static/logout/logout.html'
                 }
             }
         ]

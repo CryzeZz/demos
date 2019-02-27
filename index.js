@@ -41,12 +41,14 @@ function tabClose() {
 
             $('#mm').menu('disableItem', $('#mm-tabcopylink')[0]);
             $('#mm').menu('disableItem', $('#mm-tabopenblank')[0]);
+            $('#mm').menu('disableItem', $('#mm-tabqrshare')[0]);
         } else {
             $('#mm').menu('enableItem', $('#mm-tabupdate')[0]);
             $('#mm').menu('enableItem', $('#mm-tabclose')[0]);
 
             $('#mm').menu('enableItem', $('#mm-tabcopylink')[0]);
             $('#mm').menu('enableItem', $('#mm-tabopenblank')[0]);
+            $('#mm').menu('enableItem', $('#mm-tabqrshare')[0]);
         }
 
         var leftnum = $('.tabs-selected').prevAll().length;
@@ -98,6 +100,18 @@ var tabCloseEven = {
         var url = $(currTab.panel('options').content).attr('src');
         if (url != undefined && currTab.panel('options').title != '首页') {
             window.open(url,currTab.panel('options').title );
+        }
+    },
+    //二维码分享
+    tabqrshare:function(){
+        var currTab = $('#tabs').tabs('getSelected');
+        var url = $(currTab.panel('options').content).attr('src');
+        var title=currTab.panel('options').title
+        if (url != undefined &&  title!= '首页') {
+            var a = document.createElement('a');
+            a.href = url;
+            showQR(a.href,title);
+
         }
     },
     //关闭当前
@@ -248,3 +262,23 @@ $(function () {
     });
 
 });	
+
+function showQR(url,title){
+    $('.my-modal-mask').show();
+    $('#qr-modal').show();
+    $('#qr-modal').find('.my-modal-header').text(title||'二维码');
+    var height=$('#qr-container').height();
+    $('#qr-container').empty().qrcode({    
+        render: "canvas",
+        width:height,
+        height:height,
+        text: url
+    })
+
+    $('.my-modal-mask').off('click').on('click',function(){
+        $('.my-modal-container').hide();
+        $('.my-modal-mask').hide();
+    })
+
+
+}

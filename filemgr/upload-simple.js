@@ -25,16 +25,15 @@ $(function () {
             contentType: false,
             processData: false
         }).done(function(res) {
-            
             console.log(res);
-            return;
-            if (res.success){
-                
-                var url='/filemgr/pdf2html/download?filename='+res.filename;
-                $('<div class="alert alert-success submit-tip" role="alert"><a href="'+url+'" target="_blank">'+res.filename+'</a></div>').appendTo('#main');
+            if(res && res instanceof Array){
+                $.each(res,function(){
+                    var url='/filemgr/download/?id='+this.id;
+                    $('<div class="alert alert-success submit-tip" role="alert"><a href="'+url+'" target="_blank">'+this.filename+'</a></div>').appendTo('#main');
+                })
                 $('#submit').removeAttr('disabled').text('提交');
             }else{
-                $('<div class="alert alert-danger submit-tip" role="alert">'+res.errMsg+'</div>').appendTo('#main');
+                $('<div class="alert alert-danger submit-tip" role="alert">程序错误，请用调试工具查看</div>').appendTo('#main');
             }
         }).fail(function(res) {
             console.error(res);

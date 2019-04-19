@@ -42,7 +42,7 @@ var menus=[
             {
                 text:'文件上传',
                 attributes:{
-                    url:'/filemgr/upload'
+                    url:'./filemgr/upload-simple.html'    //'/filemgr/upload'
                 }
             },{
                 text:'文件列表',

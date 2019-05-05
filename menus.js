@@ -119,16 +119,25 @@ var menus=[
         },
         children:[
             {
-                text:'git pull demos',
+                text:'git pull',
                 attributes:{
-                    url:'/filemgr/pull?repo=demos'
-                }
-            },{
-                text:'git pull hisui',
-                attributes:{
-                    url:'/filemgr/pull?repo=hisui'
-                }
-            },{
+                    url:'',
+                },
+                children:[
+                    {
+                        text:'demos',
+                        attributes:{
+                            url:'/filemgr/pull?repo=demos'
+                        }
+                    },{
+                        text:'hisui',
+                        attributes:{
+                            url:'/filemgr/pull?repo=hisui'
+                        }
+                    },
+                ]
+            },
+            {
                 text:'退出',
                 attributes:{
                     url:'/filemgr/static/logout/logout.html'

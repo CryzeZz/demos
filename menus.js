@@ -92,6 +92,11 @@ var menus=[
                 attributes:{
                     url:'tts/tts.html'
                 }
+            },{
+                text:'multivalue',
+                attributes:{
+                    url:'multivalue/index.html'
+                }
             }
         ]
     },{

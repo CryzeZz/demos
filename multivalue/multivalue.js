@@ -34,7 +34,7 @@
         var canvas=$ele.find('canvas')[0];
         
         var widthArr=[];
-        var topArr=[];
+        var currH=0;
         function parse(data,level){
             var textWidth=getStrEnCharLen(data.key+'')*fontSize/2
             widthArr[level]=Math.max(widthArr[level]||0,  textWidth+fontSize*2);
@@ -46,19 +46,16 @@
                     var item=data.items[i];
                     H+=parse(item,level+1);
                 }
-                topArr[level]=(topArr[level]||0)+H;
                 data.top= (data.items[0].top+item.top)/2;
                 return H;
             }else{
-                topArr[level]=(topArr[level]||0)+1;
-                data.top=topArr[level];
+                data.top=++currH;
                 return 1;
             }
         }
         parse(data,0);
         //console.log(data);
        // console.log(widthArr);
-       // console.log(topArr);
 
         var leftArr=[];
        
@@ -71,7 +68,7 @@
         totalW+=stepW*(widthArr.length-1)+padding*2;
         
 
-        var totalH=(topArr[0])*stepH+padding*2;
+        var totalH=(currH)*stepH+padding*2;
         canvas.width=totalW;
         canvas.height=totalH;
         
@@ -124,7 +121,7 @@
                 $(this).removeAttr('title');
                 $(this).popover({
                     //title:'节点数据',
-                    content:title,
+                    content:'<div style="max-width:400px;word-break: break-all;">'+title+'</div>',
                     trigger:'hover'
                 })
             })

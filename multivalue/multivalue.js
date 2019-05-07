@@ -90,18 +90,13 @@
                 }
             }
 
-            if(ctx.ellipse){
-                ctx.beginPath();
-                ctx.ellipse(x,y,widthArr[data.level]/2,(fontSize+10)/2,0,0,Math.PI*2);
-                ctx.fillStyle="#fff";
-                ctx.strokeStyle="#000";
-                ctx.fill();
-                ctx.stroke();
 
-                ctx.fillStyle="#000";
-                ctx.font = fontSize+'px 宋体';
-                ctx.fillText(data.key,x-data.width/2 , y+fontSize/2 );
-            }
+
+            drawEllipse(ctx,x,y,widthArr[data.level]/2,(fontSize+10)/2,"#000","#fff");
+            ctx.fillStyle="#000";
+            ctx.font = fontSize+'px 宋体';
+            ctx.fillText(data.key,x-data.width/2 , y+fontSize/2 );
+
             var value='';
             if (typeof data.value=="undefined") {
                 value="无节点值";
@@ -126,6 +121,32 @@
                 })
             })
         }
+    }
+    function drawEllipse(ctx,x,y,a,b,borderColor,fillColor){
+        if(ctx.ellipse){
+            ctx.beginPath();
+            ctx.ellipse(x,y,a,b,0,0,Math.PI*2);
+            ctx.fillStyle=fillColor;
+            ctx.strokeStyle=borderColor;
+            ctx.fill();
+            ctx.stroke();
+        }else{
+            ctx.save();
+            var r = (a > b) ? a : b;
+            var ratioX = a / r;
+            var ratioY = b / r;
+            ctx.scale(ratioX, ratioY);
+            ctx.beginPath();
+            ctx.arc(x / ratioX, y / ratioY, r, 0, 2 * Math.PI, false);
+            ctx.closePath();
+            ctx.restore();
+            ctx.strokeStyle=borderColor;
+            ctx.stroke();
+            ctx.fillStyle=fillColor;
+            ctx.fill();
+        }
+
+
     }
 
     function drawLine(ctx,sx,sy,tx,ty,color,lineWidth,dashLen){

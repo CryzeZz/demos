@@ -118,6 +118,26 @@ var menus=[
             }
         ]
     },{
+        text:'第三方链接',
+        attributes:{
+            url:'',
+        },
+        children:[
+            {
+                text:'tool.lu',
+                attributes:{
+                    url:'https://tool.lu/index.html',
+                    target:'_blank'
+                }
+            },{
+                text:'bejson',
+                attributes:{
+                    url:'http://www.bejson.com/',
+                    target:'_blank'
+                }
+            }
+        ]
+    },{
         text:'管理',
         attributes:{
             url:'',

@@ -12,7 +12,7 @@
     <script type="text/javascript" src="/hisui/dist/js/locale/hisui-lang-zh_CN.js"></script>
 </head>
 <body>
-    <h2>combogrid setValue</h2>
+    <h2>combobox setValue</h2>
     <div style="border:1px solid #ccc;margin: 10px 10px0;border-radius: 4px;padding: 20px">
         <span class="label">省</span>
         <input type="text" id="tProvince"/>  <a class="hisui-linkbutton" id="btn">获取value text</a>
@@ -26,71 +26,60 @@
 
     <script type="text/javascript">
         (function ($) {
-            $.fn.combogrid.methods.setRemoteValue=function (jq,param) {
+            $.fn.combobox.methods.setRemoteValue=function (jq,param) {
                 return jq.each(function(){
                     if (typeof param=="string"){
-                        $(this).combogrid('setValue',param);
+                        $(this).combobox('setValue',param);
                     }else{
                         var val=param['value']||'';
                         var text=param['text']||'';
-                        $(this).combogrid('options').keyHandler.query.call(this,text);
-                        $(this).combogrid('setValue',val).combogrid('setText',text);
+                        $(this).combobox('options').keyHandler.query.call(this,text);
+                        $(this).combobox('setValue',val).combobox('setText',text);
                     }
                 })
             }
         })(jQuery);
         $(function(){
-            $('#tProvince').combogrid({
-                url:'//zhangxiang.me/data/getAreaData',
-                idField:'id',
-                textField:'name',
-                columns:[[
-                    {field:'name',title:'名称',width:'100'},
-                    {field:'spell',title:'简拼',width:'100',formatter:function(v,row){
-                        return $.hisui.toChineseSpell(row.name);
-                    }}
-                ]],
+            $('#tProvince').combobox({
+                mode:'remote',
+                url:'//zhangxiang.me/data/getAreaData?ResultSetType=array',
                 onBeforeLoad:function(param){
                     param.desc=param.q;
                 },
+                valueField:'id',
+                textField:'name',
                 mode:'remote',
-                pagination: true,
-                striped:true,
-                singleSelect:true,
-                rownumbers:true,
-                panelWidth:500,
-                panelHeight:300,
-                onLoadSuccess:function(data){
-                    alert('本页数据条数：'+data.rows.length);
+                onBeforeLoad:function(p){
+                    p.desc=p.q;
                 }
             })
 
             $('#btn1').click(function(){
-                $('#tProvince').combogrid('setValue',33);
+                $('#tProvince').combobox('setValue',33);
             })
             $('#btn2').click(function(){
-                $('#tProvince').combogrid('setValue',32).combogrid('setText','澳门');
+                $('#tProvince').combobox('setValue',32).combobox('setText','澳门');
             })
             $('#btn3').click(function(){
-                $('#tProvince').combogrid('options').keyHandler.query.call($('#tProvince')[0],"台湾省");
-                $('#tProvince').combogrid('setValue',31).combogrid('setText','台湾省');
+                $('#tProvince').combobox('options').keyHandler.query.call($('#tProvince')[0],"台湾省");
+                $('#tProvince').combobox('setValue',31).combobox('setText','台湾省');
             })
             $('#btn4').click(function(){
-                var temp=$('#tProvince').combogrid('options').onLoadSuccess;
-                $('#tProvince').combogrid('options').onLoadSuccess=function(){
-                    $(this).combogrid('setValue',30);
+                var temp=$('#tProvince').combobox('options').onLoadSuccess;
+                $('#tProvince').combobox('options').onLoadSuccess=function(){
+                    $(this).combobox('setValue',30);
                     temp.apply(this,arguments);
-                    $(this).combogrid('options').onLoadSuccess=temp;
+                    $(this).combobox('options').onLoadSuccess=temp;
                 };
-                $('#tProvince').combogrid('options').keyHandler.query.call($('#tProvince')[0],"新疆");
+                $('#tProvince').combobox('options').keyHandler.query.call($('#tProvince')[0],"新疆");
                 
             })
             $('#btn5').click(function(){
-                $('#tProvince').combogrid('setRemoteValue',{value:33,text:'香港'});
+                $('#tProvince').combobox('setRemoteValue',{value:33,text:'香港'});
             })
             $('#btn').click(function(){
-                var val=$('#tProvince').combogrid('getValue');
-                var text=$('#tProvince').combogrid('getText');
+                var val=$('#tProvince').combobox('getValue');
+                var text=$('#tProvince').combobox('getText');
                 alert(val+'-'+text);
             })
         })    

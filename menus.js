@@ -31,6 +31,11 @@ var menus=[
                 attributes:{
                     url:'hisui/combogrid.1.html'
                 }
+            },{
+                text:'combobox-setValue',
+                attributes:{
+                    url:'hisui/combobox.2.html'
+                }
             }
         ]
     },{

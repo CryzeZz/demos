@@ -8,6 +8,17 @@ $(function () {
 
     var GV = { uploader: '/filemgr/upload' };
     
+    $('#file1').fileinput({
+        showUpload:false ,
+        language:"zh" ,
+        browseOnZoneClick:true,
+        allowedPreviewTypes:['image', 'html', 'text', 'video', 'audio', 'flash']
+       
+    })
+
+
+
+
     $('#submit').click(function(){
         if($(this).attr('disabled')) return;
         if($('#file1')[0].files.length==0){

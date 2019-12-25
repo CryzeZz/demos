@@ -164,7 +164,12 @@ var menus=[
                         attributes:{
                             url:'/filemgr/pull?repo=hisui'
                         }
-                    },
+                    },{
+                        text:'hisui&gulp',
+                        attributes:{
+                            url:'/filemgr/pull?repo=hisui&gulp=gulp'
+                        }
+                    }
                 ]
             },
             {

@@ -123,7 +123,7 @@ var menus=[
             },{
                 text:'fa2png',
                 attributes:{
-                    url:'git fa2png/index.html'
+                    url:'fa2png/index.html'
                 }
             }
         ]

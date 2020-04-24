@@ -120,6 +120,11 @@ var menus=[
                 attributes:{
                     url:'/filemgr/pm/view/index'
                 }
+            },{
+                text:'fa2png',
+                attributes:{
+                    url:'git fa2png/index.html'
+                }
             }
         ]
     },{

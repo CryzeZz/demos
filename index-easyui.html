@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DEMOS</title>
+    <link rel="stylesheet" type="text/css" href="./lib/jquery-easyui-1.7.0/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" type="text/css" href="./lib/jquery-easyui-1.7.0/themes/bootstrap/custom.css">
+    <link rel="stylesheet" type="text/css" href="./lib/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="./lib/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="./lib/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="./lib/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+
+<body class="easyui-layout">
+    <div region="west" border="true" split="true" title="DEMOS" style="width:200px;padding:0px;" id="side-menus-c">
+        <div id="side-menus"></div>
+    </div>
+    <!--end region west-->
+
+    <div region="center" border=true split=true title="">
+        <div class="easyui-tabs" data-options="border:false,split:true,fit:true" id="tabs">
+            <div title="首页" style="padding:20px;" border=true>
+                示例
+            </div>
+        </div>
+    </div>
+    <!--end region center-->
+    <div data-options="region:'south',border:false" style="height:20px;text-align: center;background-color: #efefef;">
+        <a href="http://www.beian.miit.gov.cn" target="_blank" style="text-decoration: none;color: #666666;">鲁ICP备16014107号</a>
+    </div>
+    <div id="mm" class="easyui-menu cs-tab-menu">
+        <div id="mm-tabupdate" onclick="tabCloseEven.tabupdate();">刷新</div>
+        <div id="mm-tabcopylink">复制链接</div>
+        <div id="mm-tabopenblank" onclick="tabCloseEven.tabopenblank();">新窗口打开</div>
+        <div id="mm-tabqrshare" onclick="tabCloseEven.tabqrshare();">二维码</div>
+
+        <div class="menu-sep"></div>
+        <div id="mm-tabclose" onclick="tabCloseEven.tabclose();">关闭</div>
+        <div id="mm-tabcloseother" onclick="tabCloseEven.tabcloseother();">关闭其他</div>
+        <div id="mm-tabcloseall" onclick="tabCloseEven.tabcloseall();">关闭全部</div>
+        <div id="mm-tabcloseleft" onclick="tabCloseEven.tabcloseleft();">关闭左侧</div>
+        <div id="mm-tabcloseright" onclick="tabCloseEven.tabcloseright();">关闭右侧</div>
+    </div>
+    <div class="my-modal-mask" style="display:none"></div>
+    <div id="qr-modal" class="my-modal-container" style="display:none">
+        <div class="my-modal-header">
+        </div>
+        <div class="my-modal-body" style="padding: 15px 30px;">
+            <div id='qr-container'></div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="./menus.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
+
+</body>
+
+</html>

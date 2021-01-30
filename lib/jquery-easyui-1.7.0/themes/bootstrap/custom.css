@@ -1,0 +1,81 @@
+/*将树的样式整成手风琴 加个类accordiontree 尝试下*/
+.accordiontree.tree {
+    border: 1px solid #0e8bdd;
+  }
+  .accordiontree.tree > li > .tree-node {
+    height: 36px;
+    line-height: 36px;
+    background-color: #0e8bdd;
+    position: relative;
+  }
+  .accordiontree.tree > li > .tree-node .tree-hit {
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    top: 50%;
+    margin-top: -7px;
+    right: 10px;
+  }
+  .accordiontree.tree > li > .tree-node .tree-hit.tree-collapsed {
+    background: url(images/accordion_arrows2.png) -19px center no-repeat;
+  }
+  .accordiontree.tree > li > .tree-node .tree-hit.tree-expanded {
+    background: url(images/accordion_arrows2.png) -2px center no-repeat;
+  }
+  .accordiontree.tree > li > .tree-node .tree-hit:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+  }
+  .accordiontree.tree > li > .tree-node .tree-icon {
+    display: none;
+  }
+  .accordiontree.tree > li > .tree-node .tree-title {
+    height: 36px;
+    line-height: 36px;
+    color: #fff;
+    padding: 0 34px 0 15px;
+  }
+  .accordiontree.tree > li > .tree-node.tree-node-hover {
+    background-color: #3ea2e4;
+  }
+  .accordiontree.tree > li > ul {
+    background-color: #f9f9f9;
+  }
+  .accordiontree.tree > li > ul .tree-node {
+    padding-left: 5px;
+    height: 36px;
+    line-height: 36px;
+    position: relative;
+  }
+  .accordiontree.tree > li > ul .tree-node.tree-node-hover {
+    background-color: #e3e3e3;
+  }
+  .accordiontree.tree > li > ul .tree-node.tree-node-selected {
+    background-color: #e3e3e3;
+  }
+  .accordiontree.tree > li > ul .tree-node.tree-node-selected .tree-title {
+    /*2019-12-12 解决选中行变黄底色问题 */
+    /*background: #e3e3e3;*/
+  }
+  .accordiontree.tree > li > ul .tree-node .tree-hit {
+    width: 15px;
+    height: 18px;
+    margin-top: 9px;
+  }
+  .accordiontree.tree > li > ul .tree-node .tree-indent {
+    width: 15px;
+  }
+  .accordiontree.tree > li > ul .tree-node > span.tree-indent:first-child {
+    width: 0px;
+  }
+  .accordiontree.tree > li > ul .tree-node .tree-icon {
+    display: none;
+  }
+  .accordiontree.tree > li > ul .tree-node .tree-title {
+    height: 36px;
+    line-height: 36px;
+    color: #000;
+    padding: 0 10px 0 0;
+  }

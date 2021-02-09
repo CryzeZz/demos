@@ -194,12 +194,12 @@ var tabCloseEven = {
 }
 
 $(function () {
-    var menuTree=$('#side-menus').addClass('accordiontree').tree({
+    var menuTree=$('#side-menus').addClass('side-nav-tree').tree({
         data:menus,
         animate:true,
         onClick: function (node) {
             //类手风琴 只开一个根节点操作
-            if($(node.target).parent().parent().hasClass('accordiontree')&&node.state=="closed"){
+            if($(node.target).parent().parent().hasClass('side-nav-tree')&&node.state=="closed"){
                 var roots=menuTree.tree('getRoots');
                 $.each(roots,function(i,o){
                     menuTree.tree('collapse',o.target);

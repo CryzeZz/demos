@@ -1,11 +1,291 @@
 #tabs>.tabs-panels>.panel>.panel-body {
     overflow: hidden;
 }
-.accordiontree.tree {
+
+/*将树的样式整成手风琴 加个类side-nav-tree 尝试下*/
+.side-nav-tree.tree {
     border: 0;
 }
 
-.my-modal-mask{
+.side-nav-tree.tree>li>.tree-node {
+    height: 45px;
+    line-height: 45px;
+    background-color: #393D49;
+    position: relative;
+}
+
+.side-nav-tree.tree>li>.tree-node .tree-hit {
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    top: 50%;
+    margin-top: -7px;
+    right: 10px;
+}
+
+.side-nav-tree.tree>li>.tree-node .tree-hit.tree-collapsed {
+    background: url(img/accordion_arrows2.png) -19px center no-repeat;
+}
+
+.side-nav-tree.tree>li>.tree-node .tree-hit.tree-expanded {
+    background: url(img/accordion_arrows2.png) -2px center no-repeat;
+}
+
+.side-nav-tree.tree>li>.tree-node .tree-hit:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.side-nav-tree.tree>li>.tree-node .tree-icon {
+    display: none;
+}
+
+.side-nav-tree.tree>li>.tree-node .tree-title {
+    height: 45px;
+    line-height: 45px;
+    color: #fff;
+    padding: 0 34px 0 15px;
+}
+
+.side-nav-tree.tree>li>.tree-node.tree-node-hover {
+    background-color: #4E5465;
+}
+
+.side-nav-tree.tree>li>ul {
+    background-color: rgba(0,0,0,.3)!important;
+}
+
+.side-nav-tree.tree>li>ul .tree-node {
+    padding-left: 5px;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    background-color: rgba(0,0,0,.3);
+}
+
+.side-nav-tree.tree>li>ul .tree-node.tree-node-hover {
+    background-color: rgba(0,0,0,.3);
+}
+
+.side-nav-tree.tree>li>ul .tree-node.tree-node-selected {
+    background-color: #009688;
+}
+
+.side-nav-tree.tree>li>ul .tree-node.tree-node-selected .tree-title {
+    background-color: #009688;
+    color: #fff;
+}
+
+.side-nav-tree.tree>li>ul .tree-node .tree-hit {
+    width: 15px;
+    height: 18px;
+    margin-top: 9px;
+}
+
+.side-nav-tree.tree>li>ul .tree-node .tree-indent {
+    width: 15px;
+}
+
+.side-nav-tree.tree>li>ul .tree-node>span.tree-indent:first-child {
+    width: 0px;
+}
+
+.side-nav-tree.tree>li>ul .tree-node .tree-icon {
+    display: none;
+}
+
+.side-nav-tree.tree>li>ul .tree-node .tree-title {
+    height: 40px;
+    line-height: 40px;
+    color: rgba(255,255,255,.7);
+    padding: 0 10px 0 0;
+}
+.side-nav-tree.tree>li>ul .tree-node .tree-title:hover {
+    color: #fff;
+}
+
+/*========================================================tabs start ============================================================ */
+.tabs-scroller-left,
+.tabs-scroller-right {
+  position: absolute;
+  top: auto;
+  bottom: 0px;
+  width: 19px;
+  /*2018-6-28 加宽*/
+  font-size: 1px;
+  display: none;
+  cursor: pointer;
+  border: none;
+  /*去边框---下面定义*/
+}
+.tabs-header {
+  padding-top: 0px;
+  border-top-width: 0;
+}
+.tabs {
+  height: 36px;
+  padding-left: 0px;
+  border-width: 0 0 0px 0;
+  border-bottom: 2px solid #E2E2E2;
+  overflow: visible;
+  /*tabs-brand no hover no pointer  cryze 2018-3-15*/
+}
+.tabs li {
+  height: 34px;
+  /*wanghc 2018-3-19  win7-ie11*/
+  margin: 0px;
+  overflow: hidden;
+}
+.tabs li:not(:last-child)::after {
+  content: none;
+}
+.tabs li.tabs-selected {
+  overflow: visible;
+}
+.tabs li.tabs-selected a.tabs-inner {
+  background: #FFFFFF;
+  border: 0 solid;
+  border-bottom: 3px solid #31B1FF;
+  color: #31B1FF;
+  font-weight: normal;
+}
+.tabs li.tabs-selected a.tabs-inner:hover {
+  background: #FFFFFF;
+  color: #31B1FF;
+  font-weight: normal;
+}
+.tabs li.tabs-selected::after {
+  content: none;
+}
+.tabs li.tabs-selected a.tabs-close {
+  background: url(img/tabs_icons_2.png) no-repeat 0 0;
+}
+.tabs li a.tabs-inner {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  color: #000000;
+  background: #FFFFFF;
+  border-width: 0;
+  border-bottom: 3px solid #FFFFFF;
+  filter: none;
+}
+.tabs li a.tabs-inner:hover {
+  border-top-color: #FFFFFF;
+  background: #FFFFFF;
+  color: #31B1FF;
+  filter: none;
+}
+.tabs li a.tabs-inner .tabs-title.tabs-closable {
+  padding-right: 28px;
+}
+.tabs li a.tabs-inner .tabs-icon {
+  margin-top: -6px;
+}
+.tabs li a.tabs-inner .tabs-title.tabs-with-icon {
+  padding-left: 20px;
+}
+.tabs li a.tabs-close {
+  background: url(img/tabs_icons_2.png) no-repeat 0 0;
+  margin-top: -9px;
+  right: 10px;
+  height: 18px;
+  width: 18px;
+  opacity: 1.0;
+  filter: alpha(opacity=100);
+}
+.tabs li a.tabs-close:hover {
+  background: url(img/tabs_icons_2.png) no-repeat -36px 0;
+}
+.tabs li.tabs-brand a.tabs-inner {
+  cursor: default;
+}
+.tabs li.tabs-brand a.tabs-inner:hover {
+  border-top-color: #FFFFFF;
+  background: #FFFFFF;
+  color: #000000;
+}
+.tabs li.tabs-brand a.tabs-inner .tabs-title {
+  font-weight: bold;
+}
+/*.tabs li a.tabs-inner {
+  color:@tabs-header-font-color;
+  background:@tabs-header-bgcolor;
+}*/
+.tabs-title {
+  font-size: 14px;
+}
+.tabs-header-bottom .tabs li a.tabs-inner {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+.tabs-header-left .tabs li a.tabs-inner {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+.tabs-header-right .tabs li a.tabs-inner {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+.tabs-scroller-left {
+  background: #FFFFFF url('img/tabs_icons_gray.png') no-repeat 4px center;
+  /*2018-6-27 UI建议修改 1px->4px*/
+}
+.tabs-scroller-right {
+  background: #FFFFFF url('img/tabs_icons_gray.png') no-repeat -12px center;
+  /*2018-6-27 UI建议修改 -15px->-12px*/
+}
+.tabs-header-bottom .tabs li.tabs-selected a.tabs-inner {
+  background: #ffffff;
+}
+.tabs-header-left .tabs li.tabs-selected a.tabs-inner {
+  background: #ffffff;
+}
+.tabs-header-right .tabs li.tabs-selected a.tabs-inner {
+  background: #ffffff;
+}
+.tabs-header,
+.tabs-tool {
+  background-color: #FFFFFF;
+  /*modify*/
+}
+.tabs-header-plain {
+  background: transparent;
+}
+.tabs-header,
+.tabs-scroller-left,
+.tabs-scroller-right,
+.tabs-tool,
+.tabs-panels,
+.tabs-header-bottom .tabs li.tabs-selected a.tabs-inner,
+.tabs-header-left .tabs li.tabs-selected a.tabs-inner,
+.tabs-header-right .tabs li.tabs-selected a.tabs-inner {
+  border-color: #FFFFFF;
+}
+
+
+
+/*====================================================================tabs end ===========================================================*/
+
+.header-logo{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    line-height: 60px;
+    text-align: center;
+    color: #009688;
+    font-size: 16px;
+}
+
+
+.my-modal-mask {
     background: #000000;
     position: absolute;
     left: 0;
@@ -19,34 +299,38 @@
     overflow: hidden;
     z-index: 1000;
 }
-.my-modal-container{
+
+.my-modal-container {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     background: #fff;
-    border: 1px solid rgba(0,0,0,.2);
+    border: 1px solid rgba(0, 0, 0, .2);
     border-radius: 6px;
     outline: 0;
-    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
-    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
 
     z-index: 1001;
 }
-.my-modal-header{
+
+.my-modal-header {
     padding: 15px;
     border-bottom: 1px solid #e5e5e5;
 }
-.my-modal-body{
+
+.my-modal-body {
     padding: 15px;
 }
-.my-modal-footer{
+
+.my-modal-footer {
     padding: 15px;
     border-top: 1px solid #e5e5e5;
 }
 
-#qr-container{
-    width:300px;
+#qr-container {
+    width: 300px;
     height: 300px;
     margin: 0 auto;
 }

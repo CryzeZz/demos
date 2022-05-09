@@ -14,15 +14,17 @@
 </head>
 
 <body class="hisui-layout">
+    <!--
     <div data-options="region:'north',border:false" style="height: 60px;background-color: #23262E;">
         <div class="header-logo">DEMOS</div>
     </div>
+    -->
     <div data-options="region:'west',border:false" style="width:200px;padding:0px;background-color: #393D49;" id="side-menus-c">
         <div id="side-menus"></div>
     </div>
     <!--end region west-->
 
-    <div region="center" border=true split=true title="">
+    <div data-options="region:'center',border:false,split:true" >
         <div class="hisui-tabs" data-options="border:false,split:true,fit:true" id="tabs">
             <div title="首页" style="padding:20px;" border=true>
                 示例
@@ -30,7 +32,7 @@
         </div>
     </div>
     <!--end region center-->
-    <div data-options="region:'south',border:false" style="height:20px;text-align: center;background-color: #efefef;">
+    <div data-options="region:'south',border:false" style="height:20px;text-align: center;background-color: #efefef;border-top: 1px solid #509de1;">
         <a href="http://www.beian.miit.gov.cn" target="_blank" style="text-decoration: none;color: #666666;">天天要开心鸭</a>
     </div>
     <div id="mm" class="hisui-menu cs-tab-menu">

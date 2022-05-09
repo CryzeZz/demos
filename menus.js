@@ -128,6 +128,24 @@ var menus=[
             }
         ]
     },{
+        text:'imedical相关',
+        attributes:{
+            url:'',
+        },
+        children:[
+            {
+                text:'工程文件名解析',
+                attributes:{
+                    url:'imedical/prj2file.html'
+                }
+            },{
+                text:'解密工具',
+                attributes:{
+                    url:'/filemgr/trak-password-decode'
+                }
+            }
+        ]
+    },{
         text:'第三方链接',
         attributes:{
             url:'',

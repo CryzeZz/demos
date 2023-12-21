@@ -1,345 +1,92 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Convert Icon Fonts To PNG - fa2png.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Awesome 2 PNG</title>
+    <link rel="stylesheet" type="text/css" href="/hisui/dist/css/hisui.lite.min.css">
+    <script type="text/javascript" src="/hisui/dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/hisui/dist/js/jquery.hisui.js"></script>
+    <script type="text/javascript" src="/hisui/dist/js/locale/hisui-lang-zh_CN.js"></script>
+
     <script src="static/js/html2canvas.min.js"></script>
     <script src="static/js/canvas2image.js"></script>
     <script src="static/js/base64.js"></script>
-    <link rel="stylesheet" href="static/fa2png.min.css">
-    <script src="static/common.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="static/jquery-confirm.css"/>
-    <script type="text/javascript" src="static/jquery-confirm.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#createimg').click(function () {
-                var content = $("#icon-preview").children();
-                var filename=$('#filename').val();
-                if (filename==''){
-                    filename=$('#icon-cls-name').val()
-                        +'_'+$('#icon-color-input').val().replace('#','')
-                        +'_'+$('#icon-background-input').val().replace('#','')
-                        +'_'+$('#icon-size-input').val()
-                }
-                if (content.length > 0) {
-                    //content[0].style = "";
-                    html2canvas(content[0], {
-                        onrendered: function (canvas) {
-                            //添加属性
-                            /*自动保存为png*/
-                            // 获取图片资源
-                            var img_data1 = Canvas2Image.saveAsPNG(canvas, true).getAttribute('src');
-                            saveFile(img_data1, filename);
-                        }
-                    });
-                } else {
-                    $.alert({
-                        icon: 'fa fa-warning',
-                        title: '提示',
-                        confirmButton: false,
-                        animation: 'top',
-                        theme: 'material', // 'material', 'bootstrap'
-                        content: '请先选择Font-Awesome图标!'
-                    });
-                }
-            });
-            $('#money').keyup(function () {
-                $('#moneychinese').val(atoc($('#money').val()));
-            });
-            $('#money').change(function () {
-                $('#moneychinese').val(atoc($('#money').val()));
-            });
-        });
-        var saveFile = function (data, filename) {
-            var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
-            save_link.href = data;
-            save_link.download = filename;
+    <link rel="stylesheet" type="text/css" href="./async-font/css/font-awesome.css">
 
-            var event = document.createEvent('MouseEvents');
-            event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-            save_link.dispatchEvent(event);
-        };
 
-        function atoc(numberVal) {
-            var numberValue = new String(Math.round(numberVal * 100)); // 数字金额
-            var chineseValue = ""; // 转换后的汉字金额
-            var String1 = "零壹贰叁肆伍陆柒捌玖"; // 汉字数字
-            var String2 = "万仟佰拾亿仟佰拾万仟佰拾元角分"; // 对应单位
-            var len = numberValue.length; // numberValue 的字符串长度
-            var Ch1; // 数字的汉语读法
-            var Ch2; // 数字位的汉字读法
-            var nZero = 0; // 用来计算连续的零值的个数
-            var String3; // 指定位置的数值
-            if (len > 15) {
-                alert("超出计算范围");
-                return "";
-            }
-            if (numberValue == 0) {
-                chineseValue = "零元整";
-                return chineseValue;
-            }
-            String2 = String2.substr(String2.length - len, len); // 取出对应位数的STRING2的值
-            for (var i = 0; i < len; i++) {
-                String3 = parseInt(numberValue.substr(i, 1), 10); // 取出需转换的某一位的值
-                if (i != (len - 3) && i != (len - 7) && i != (len - 11) && i != (len - 15)) {
-                    if (String3 == 0) {
-                        Ch1 = "";
-                        Ch2 = "";
-                        nZero = nZero + 1;
-                    } else if (String3 != 0 && nZero != 0) {
-                        Ch1 = "零" + String1.substr(String3, 1);
-                        Ch2 = String2.substr(i, 1);
-                        nZero = 0;
-                    } else {
-                        Ch1 = String1.substr(String3, 1);
-                        Ch2 = String2.substr(i, 1);
-                        nZero = 0;
-                    }
-                } else { // 该位是万亿，亿，万，元位等关键位
-                    if (String3 != 0 && nZero != 0) {
-                        Ch1 = "零" + String1.substr(String3, 1);
-                        Ch2 = String2.substr(i, 1);
-                        nZero = 0;
-                    } else if (String3 != 0 && nZero == 0) {
-                        Ch1 = String1.substr(String3, 1);
-                        Ch2 = String2.substr(i, 1);
-                        nZero = 0;
-                    } else if (String3 == 0 && nZero >= 3) {
-                        Ch1 = "";
-                        Ch2 = "";
-                        nZero = nZero + 1;
-                    } else {
-                        Ch1 = "";
-                        Ch2 = String2.substr(i, 1);
-                        nZero = nZero + 1;
-                    }
-                    if (i == (len - 11) || i == (len - 3)) { // 如果该位是亿位或元位，则必须写上
-                        Ch2 = String2.substr(i, 1);
-                    }
-                }
-                chineseValue = chineseValue + Ch1 + Ch2;
-            }
-            if (String3 == 0) { // 最后一位（分）为0时，加上“整”
-                chineseValue = chineseValue + "整";
-            }
-            return chineseValue;
-        }
-    </script>
+    <link rel="stylesheet" type="text/css" href="./index.css">
 </head>
-<body data-pjaxr-namespace="md.main.index">
+<body>
+    <div id="main">
+        <div id="top" >
+            FA2PNG
+        </div>
+        <div id="left" class="shadow-1">
+            <div id="left-header">设置图标与样式</div>
+            <table class="form-table">
+                <tr class="form-tr">
+                    <td class="r-label">
+                        图标类
+                    </td>
+                    <td class="l-value">
+                        <input type="text" id="font-class" class="textbox hisui-combobox" data-options="width:200"/>
+                    </td>
+                </tr>
+                <tr class="form-tr">
+                    <td class="r-label">
+                        字体颜色
+                    </td>
+                    <td class="l-value">
+                        <input type="text" id="font-color" class="textbox" style="width: 193px;" value="#999999"/>
+                    </td>
+                </tr>
+                <tr class="form-tr">
+                    <td class="r-label">
+                        背景颜色
+                    </td>
+                    <td class="l-value">
+                        <input type="text" id="font-bg" class="textbox" style="width: 193px;" value="transparent"/>
+                    </td>
+                </tr>
+                <tr class="form-tr">
+                    <td class="r-label">
+                        字体大小
+                    </td>
+                    <td class="l-value">
+                        <input type="text" id="font-size" class="textbox" style="width: 193px;" value="16"/>
+                    </td>
+                </tr>
+                <tr class="form-tr">
+                    <td class="r-label">
+                        字体边距
+                    </td>
+                    <td class="l-value">
+                        <input type="text" id="font-padding" class="textbox" style="width: 193px;" value="0"/>
+                    </td>
+                </tr>
 
+                <tr class="form-tr">
+                    <td class="" style="text-align: center;" colspan="2">
+                        <a href="javascript:void(0);" class="hisui-linkbutton" id="preview">预览</a>
+                        <a href="javascript:void(0);" class="hisui-linkbutton" id="download" style="margin-left: 10px;">下载</a>
+                    </td>
+                    
+                </tr>
 
-<div id="site">
-    <div class="navbar navbar-default navbar-transparent" id="navbar" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target=".navbar-collapse">
-                    <span class="sr-only"></span>
-                    <span class="fa fa-bars"></span>
-                </button>
-                <a class="navbar-brand" href="#" data-pjaxr>FA2PNG</a>
+            </table>
+        </div>
+        <div id="right" class="shadow-1">
+            <div id="prev-wrapper">
+                <div id="prev"></div>
             </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="http://www.fontawesome.com.cn/faicons/" target="_blank"><span class="fa fa-font-awesome"></span>Font Awesome Icons</a></li>
-                    <!--<li><a href="base64/index.html" data-pjaxr="" target="_self"><span class="fa fa-rocket"></span>&nbsp;&nbsp;Base64</a>
-                    </li>
-                    <li><a href="qrcode/index.html" data-pjaxr="" target="_self"><span class="fa fa-qrcode"></span>&nbsp;&nbsp;QRCode</a>
-                    </li>-->
-                </ul>
-            </div>
+            
+        </div>
+        <div style="clear: both;"></div>
+        <div id="bottom" >
+
         </div>
     </div>
-
-    <div id="page">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="panel panel-default box-shadow-z-2">
-                        <div class="panel-body">
-                            <form class="form-horizontal" id="js-icon-form" action="/api/generate-image/" method="post">
-                                <input type='hidden' name='csrfmiddlewaretoken'
-                                       value='YU8J55CxrEDRBQOUFZ2FnOuECLX0XuSP'/>
-                                <!--
-                                <div class="form-group">
-                                    <div class="col-xs-12">
-                                        <label class="sr-only" for="icon-name-input">Icon name</label>
-                                        <select class="form-control" id="icon-name-input" name="icon"
-                                                data-placeholder="Name e.g. rocket" style="width: 100%">
-                                            <option></option>
-                                        </select>
-                                    </div>
-                                </div>
-                                -->
-                                <div class="form-group">
-                                    <div class="col-xs-12">
-                                        <label class="sr-only" for="icon-cls-name">图标类</label>
-                                        <input id="icon-cls-name" class="form-control" placeholder="图标样式类 如 fa-leaf">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-xs-12" data-toggle="popover" data-placement="bottom"
-                                         title="Color of the icon"
-                                         data-content="Click on the color area on the right to trigger the colorpicker.">
-                                        <label class="sr-only" for="icon-color-input">Icon color</label>
-                                        <div class="input-group" id="js-icon-color-colorpicker">
-                                            <input type="text" class="form-control text-right" id="icon-color-input"
-                                                   name="color" placeholder="Color e.g. #0064ff">
-                                            <div class="input-group-addon icon-color-display"
-                                                 id="js-icon-color-display"><i></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-xs-12" data-toggle="popover" data-placement="bottom"
-                                         title="Background of the icon (optional)"
-                                         data-content="Leave this field blank for a transparent background. You can remove the background by clicking the trash bin.">
-                                        <label class="sr-only" for="icon-background-input">Icon background</label>
-                                        <div class="input-group" id="js-icon-background-colorpicker">
-                                            <div class="input-group-addon" id="js-icon-background-clear"><span
-                                                    class="fa fa-trash"></span></div>
-                                            <input type="text" class="form-control text-right"
-                                                   id="icon-background-input" name="background"
-                                                   placeholder="Background e.g. #eeeeee">
-                                            <div class="input-group-addon icon-background-display"
-                                                 id="js-icon-background-display"><i></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="checkbox hidden" data-toggle="popover" data-placement="bottom"
-                                     title="Remove background"
-                                     data-content="Check this box if you don't want to use any background on the final image."
-                                     style="padding-top:0;margin-bottom:10px;">
-                                    <label>
-                                        <input type="checkbox" id="icon-disable-background-input" name="disablebg">
-                                        Remove background on final image
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-xs-12" data-toggle="popover" data-placement="bottom"
-                                         title="Size of the icon"
-                                         data-content="This is also the size of the (square) image if the margin (below) is set to 0.">
-                                        <label class="sr-only" for="icon-size-input">Icon size</label>
-                                        <div class="input-group input-group-with-slider">
-                                            <input type="text" class="form-control text-right" id="icon-size-input"
-                                                   name="size" placeholder="Size e.g. 256px">
-                                            <div class="input-group-addon">px</div>
-                                        </div>
-                                        <div id="js-icon-size-slider"></div>
-                                    </div>
-                                </div>
-                                <!--<div class="form-group">-->
-                                <!--<div class="col-xs-12" data-toggle="popover" data-placement="bottom"-->
-                                <!--title="Margin of the icon"-->
-                                <!--data-content="This is the space between the largest side of the icon and the image.">-->
-                                <!--<label class="sr-only" for="icon-margin-input">Icon margin</label>-->
-                                <!--<div class="input-group input-group-with-slider">-->
-                                <!--<input type="text" class="form-control text-right" id="icon-margin-input"-->
-                                <!--name="margin" placeholder="Margin e.g. 0px">-->
-                                <!--<div class="input-group-addon">px</div>-->
-                                <!--</div>-->
-                                <!--<div id="js-icon-margin-slider"></div>-->
-                                <!--</div>-->
-                                <!--</div>-->
-                                <div class="form-group">
-                                    <div class="col-xs-12">
-                                        <label class="sr-only" for="filename">文件名</label>
-                                        <input id="filename" class="form-control" placeholder="文件名">
-                                    </div>
-                                </div>
-                                <button type="button" id="createimg" class="btn btn-primary btn-block"><span
-                                        class="fa fa-bolt"></span>
-                                    生成 <span class="fa fa-bolt"></span></button>
-                                <div class="modal fade" id="js-icon-generation-modal" data-backdrop="static"
-                                     data-keyboard="false">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Generating icon image</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>This may take a moment for large image sizes. The modal will close
-                                                    itself when it's done.</p>
-                                                <div class="progress progress-striped active" style="margin-bottom:0;">
-                                                    <div class="progress-bar" style="width: 100%"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                            <a class="btn btn-success btn-block icon-download-btn hidden"
-                               id="js-icon-download-btn"><span class="fa fa-cloud-download"></span> Download (<span
-                                    id="js-icon-download-size"></span>) <span class="fa fa-cloud-download"></span></a>
-                            <div class="input-group icon-base64 hidden" id="js-icon-base64" data-toggle="popover"
-                                 data-placement="bottom" title="base64 encoded image"
-                                 data-content="Need the base64 data string for some inline images? Simply click the copy button and paste it to your image src!">
-                                <input type="text" class="form-control">
-                                <div class="input-group-addon" id="js-icon-base64-btn"><span class="fa fa-copy"></span>
-                                </div>
-                            </div>
-                            <div class="input-group icon-permalink hidden" id="js-icon-permalink" data-toggle="popover"
-                                 data-placement="bottom" title="Permalink of this configuration"
-                                 data-content="Want to share this configuration? Simply copy the link by clicking the icon on the right.">
-                                <input type="text" class="form-control">
-                                <div class="input-group-addon" id="js-icon-permalink-btn"><span
-                                        class="fa fa-copy"></span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default box-shadow-z-2 desktop-app-ad" id="showimg">
-
-                        <div class="input-group" style="padding:15px;">
-                            <span class="input-group-addon">$</span>
-                            <input type="number" id="money" class="form-control" placeholder="金额"
-                                   aria-label="Amount (to the nearest dollar)">
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-12" style="padding-top: 10px;">
-                                <label class="sr-only" for="filename">金额(大写)</label>
-                                <input id="moneychinese" class="form-control" placeholder="金额(大写)">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-sm-8">
-                    <div id="icon-preview-wrapper">
-                        <div id="icon-preview" class="well well-sm box-shadow-z-2">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-
-
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-
-
-    </div>
-
-</div>
-
-
-<footer>
-    <div class="container">
-        <div class="row">
-            网页复制自<a href='https://www.rxez8.com/tools/' target="_blank">https://www.rxez8.com/tools/</a> 
-        </div>
-    </div>
-
-</footer>
-
-<script src="static/fa2png.js"></script>
-
-
+    <script type="text/javascript" src="./index.js"></script>
 </body>
 </html>

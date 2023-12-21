@@ -123,12 +123,11 @@ $(function(){
 
         $.messager.prompt('确认','请输入文件名',function(r){
             if(r) {
-                html2canvas($('#prev')[0], {
-                    onrendered: function (canvas) {
-                        var img_data1 = Canvas2Image.saveAsPNG(canvas, true).getAttribute('src');
-                        saveFile(img_data1, filename);
-                    }
-                });
+				html2canvas($('#prev')[0], {useCORS:true}).then(function(canvas){
+					
+				    var url = canvas.toDataURL('image/png');//图片地址
+				    saveFile(url,filename);
+				});
 
 
 

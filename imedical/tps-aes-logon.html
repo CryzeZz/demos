@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES登录</title>
+    <link rel="stylesheet" type="text/css" href="/hisui/dist/css/hisui.lite.min.css">
+    <script type="text/javascript" src="/hisui/dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/hisui/dist/js/jquery.hisui.js"></script>
+    <script type="text/javascript" src="/hisui/dist/js/locale/hisui-lang-zh_CN.js"></script>
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/crypto-js/4.1.1/crypto-js.min.js" type="application/javascript"></script>
+
+    <link rel="stylesheet" type="text/css" href="../lib/coolbody/coolbody.css">
+    <style>
+        .form-tr>td {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .form-table {
+            color: #000;
+        }
+        .log-item{
+            word-break: break-all;
+            border-bottom: 1px dashed #999;
+        }
+    </style>
+</head>
+
+<body style="padding-top:20px;">
+    <div id="main" style="margin: 0px auto;width:1100px;height: 700px;" class="hisui-layout">
+        <div data-options="region:'west',border:false" style="width: 700px;background: transparent;">
+            <div class="hisui-panel" title="参数" fit="true">
+                <table class="form-table" style="width: 100%;">
+
+                    <tr class="form-tr">
+                        <td class="r-label">
+                            URL
+                        </td>
+                        <td class="l-value">
+                            <input type="text" id="URL" class="textbox" style="width: 493px;"
+                                placeholder="......form.htm" />
+                        </td>
+                    </tr>
+
+                    <tr class="form-tr">
+                        <td class="r-label">
+                            AESKey
+                        </td>
+                        <td class="l-value">
+                            <input type="text" id="AESKey" class="textbox" style="width: 493px;" />
+                        </td>
+                    </tr>
+
+                    <tr class="form-tr">
+                        <td class="r-label">
+                            TPSID
+                        </td>
+                        <td class="l-value">
+                            <input type="text" id="TPSID" class="textbox" style="width: 493px;" />
+                        </td>
+                    </tr>
+
+                    <tr class="form-tr">
+                        <td class="r-label">
+                            USERNAME
+                        </td>
+                        <td class="l-value">
+                            <input type="text" id="USERNAME" class="textbox " style="width: 493px;" />
+                        </td>
+                    </tr>
+                    <tr class="form-tr">
+                        <td class="r-label">
+                            DEPARTMENTCODE
+                        </td>
+                        <td class="l-value">
+                            <input type="text" id="DEPARTMENTCODE" class="textbox" style="width: 493px;" />
+                        </td>
+                    </tr>
+                    <tr class="form-tr">
+                        <td class="r-label">
+                            其它参数
+                        </td>
+                        <td class="l-value">
+                            <div style="width: 500px;height: 250px;">
+                                <table id="OtherArgs"></table>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <tr class="form-tr">
+                        <td class="" style="text-align: center;" colspan="2">
+                            <a href="javascript:void(0);" class="hisui-linkbutton" id="gen">计算</a>
+                            <a href="javascript:void(0);" class="hisui-linkbutton" id="clear"
+                                style="margin-left: 10px;">清空</a>
+                                <a href="javascript:void(0);" class="hisui-linkbutton" id="clear-storage"
+                                style="margin-left: 10px;">清除暂存</a>
+                        </td>
+
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div data-options="region:'center',border:false" style="padding-left: 10px;background: transparent;">
+            <div class="hisui-panel" title="计算过程与结果"  fit="true">
+                <div id="log"></div>
+
+            </div>
+
+        </div>
+    </div>
+    <script src="./tps-aes-logon.js"></script>
+</body>
+
+</html>

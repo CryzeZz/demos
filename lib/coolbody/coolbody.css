@@ -1,0 +1,31 @@
+html,body {
+    padding: 0;
+    margin: 0;
+}
+body{
+    height:100vh;
+    background-image:linear-gradient(125deg,#1abc9c,#3498db,#e74c3c,#9b59b6,#f39c12);
+    color:#fff;
+    background-size:400%;
+    animation:bgmove 20s infinite;
+}
+    
+@keyframes bgmove{
+    0%{
+        background-position:0%50%;
+    }
+        
+    50%{
+        background-position:100%50%;
+    }
+        
+    0%{
+        background-position:0%50%;
+    }
+}
+
+
+.shadow-1{
+    -webkit-box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
+    box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
+}

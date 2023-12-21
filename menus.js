@@ -143,6 +143,11 @@ var menus=[
                 attributes:{
                     url:'/filemgr/trak-password-decode'
                 }
+            },{
+                text:'AES LOGON',
+                attributes:{
+                    url:'imedical/tps-aes-logon.html'
+                }
             }
         ]
     },{

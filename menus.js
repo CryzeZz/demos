@@ -148,6 +148,11 @@ var menus=[
                 attributes:{
                     url:'imedical/tps-aes-logon.html'
                 }
+            },{
+                text:'xml2Udl',
+                attributes:{
+                    url:'imedical/xml2Udl.html'
+                }
             }
         ]
     },{

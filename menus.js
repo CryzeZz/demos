@@ -12,6 +12,12 @@ var menus=[
                     target:'_blank'
                 }
             },{
+                text:'hisui-api-lite',
+                attributes:{
+                    url:'/hisui/lite/',
+                    target:'_blank'
+                }
+            },{
                 text:'datagrid-load',
                 attributes:{
                     url:'hisui/datagrid.1.html'
@@ -176,6 +182,25 @@ var menus=[
             }
         ]
     },{
+		text:'微信订阅号',
+		attributes:{
+			url:'',
+		},
+		children:[
+			{
+				text:'上传其他类型永久素材',
+				attributes:{
+					url:'/filemgr/wechat/media-upload'
+                }
+			},
+			{
+				text:'菜单管理',
+				attributes:{
+					url:'/filemgr/wechat/menu-mgr'
+                }
+			}
+		]
+	},{
         text:'管理',
         attributes:{
             url:'',

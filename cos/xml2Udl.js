@@ -749,6 +749,28 @@
         },
         UDLText:{
             Name:{}
+        },
+        projection:{
+            Name:{},
+            Deprecated:{
+                type:'boolean',
+                on:'Deprecated',
+                off:''
+            },
+            Description:{},
+            Internal:{
+                type:'boolean',
+                on:'Internal',
+                off:''
+            },
+            NotInheritable:{
+                type:'boolean',
+                on:'NotInheritable',
+                off:''
+            },
+            Parameters:{},
+            SequenceNumber:{},
+            Type:{}
         }
     }
 
@@ -840,7 +862,6 @@
                 value=attrs[i].value;
             arr.push(name+'="'+value+'"');
         }
-        debugger;
         return {
             title:o.tagName,
             text:arr.join(LINE_FEED)
@@ -1280,7 +1301,27 @@
     }
     function projection2Udl(o){
         var name=o.getAttribute('name');
-        var text='';
+
+        var oo=parseComm(o);
+        var ooDef=oo.ooDef,paramArr=oo.paramArr;
+
+        var text=LINE_FEED;
+        if(ooDef.Description){text+=ooDef.Description+LINE_FEED;}
+        
+        text+='Projection '+name;
+        
+        if(ooDef.Type){
+            text+=' As '+ooDef.Type;
+        }
+        if(paramArr.length>0) {
+            text+='('+paramArr.join(', ')+')';
+        }
+
+        text+=getOoDefPropertyText(ooDef,'Projection');
+
+        text+=';'+LINE_FEED;
+
+
         return {
             title:o.tagName+' '+name,
             text:text

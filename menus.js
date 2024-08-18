@@ -3,6 +3,9 @@ var menus=[
         text:'hisui',
         attributes:{
             url:'',
+            filter:function(){
+                return location.href.indexOf('dhcc')>-1;
+            }
         },
         children:[
             {
@@ -131,12 +134,20 @@ var menus=[
                 attributes:{
                     url:'fa2png/index.html'
                 }
+            },{
+                text:'xml2Udl',
+                attributes:{
+                    url:'cos/xml2Udl.html'
+                }
             }
         ]
     },{
         text:'imedical相关',
         attributes:{
             url:'',
+            filter:function(){
+                return location.href.indexOf('dhcc')>-1;
+            }
         },
         children:[
             {
@@ -153,11 +164,6 @@ var menus=[
                 text:'AES LOGON',
                 attributes:{
                     url:'imedical/tps-aes-logon.html'
-                }
-            },{
-                text:'xml2Udl',
-                attributes:{
-                    url:'imedical/xml2Udl.html'
                 }
             }
         ]
@@ -239,6 +245,18 @@ var menus=[
         ]
     }
 ]
+
+
+menus=menus.filter(function(node){
+    if (node.attributes && node.attributes.filter && typeof node.attributes.filter=='function'){
+        return node.attributes.filter();
+    }else{
+        return true;
+    }
+});
+
+
+
 var indexMenuText={};
 function parseMenus(menus,pre){
     if (typeof pre=='undefined') pre='r';

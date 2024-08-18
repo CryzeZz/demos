@@ -665,7 +665,8 @@
                 type:'string'
             },
             Time:{
-                type:'string'
+                type:'string',
+                nullValues:['BEFORE']
             },
             UpdateColumnList:{
                 type:'string',
@@ -1775,6 +1776,31 @@ $(function () {
         ]
     });
 
+    $('#btn-xml').click(function(){
+        $('#btn-xml').addClass('selected');
+        $('#btn-udl').removeClass('selected');
+        $('#item-udl-c').hide();
+        $('#item-xml-c').show();
+    })
+    $('#btn-udl').click(function(){
+        $('#btn-udl').addClass('selected');
+        $('#btn-xml').removeClass('selected');
+        $('#item-xml-c').hide();
+        $('#item-udl-c').show();
+    })
+
+    var clipboard = new ClipboardJS('#btn-copy', {
+        text: function () {
+            if($('#btn-udl').hasClass('selected')) {
+                var text=$('#item-udl').text();
+            }else{
+                var text=$('#item-xml').text();
+            }
+
+            $.messager.popover({ msg: '复制成功', type: 'success', timeout: 1000 });
+            return text;
+        }
+    });
 
 
 

@@ -10,6 +10,8 @@
     <script type="text/javascript" src="/hisui/dist/js/jquery.hisui.min.js"></script>
     <script type="text/javascript" src="/hisui/dist/js/locale/hisui-lang-zh_CN.js"></script>
 
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/clipboard.js/2.0.10/clipboard.min.js" type="application/javascript"></script>
+
     <!--hightlight.js-->
     <link href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/base16/darcula.min.css" type="text/css" rel="stylesheet" />
 
@@ -91,6 +93,34 @@
         .pre-numbering li{
             font-size: 12px;
         }
+
+
+        #btns{
+            padding-top:2px;
+        }
+        #btns a {
+            border-radius: 3px;
+            display: inline-block;
+            height: 22px;
+            line-height: 22px;
+            text-align: center;
+            background: #efefef;
+            color: #666;
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        #btns a:hover {
+            cursor: pointer;
+            background: #d8efff;
+            color: #017bce;
+        }
+        #btns a.selected {
+            background: #40a2de;
+            color: #feffff;
+        }
+
+
+
     </style>
 </head>
 <body class="hisui-layout">
@@ -112,13 +142,19 @@
             <pre style="margin: 0;width: 100%;box-sizing: border-box;"><code id="item-xml" style="width: 100%;box-sizing: border-box;" class="hljs"></code></pre>
         </div>
         
-        <div style="position: absolute;top: 10px;right: 10px;" id="kw"></div>
+
+        <div style="position: absolute;top: 10px;right: 10px;" id="btns">
+            <a href="javascript:void(0)"  style="margin-right: 10px;" id='btn-udl' class="selected">udl</a>
+            <a href="javascript:void(0)"  style="margin-right: 10px;" id='btn-xml'>xml</a>
+
+            <a href="javascript:void(0)"  style="margin-right: 10px;" id='btn-copy'>copy</a>
+        </div>
         
     </div>
 
     <div id="win" class="hisui-dialog" style="padding: 0px;line-height:1.8em;"><pre style="margin: 0;"><code id="src" style="width: 100%;height: 100%;box-sizing: border-box;" class="hljs"></code></pre></div>
 
-    <input type="file" id="file" style="position:absolute;top:-100px;" multiple="multiple" />
+    <input type="file" id="file" style="position:absolute;top:-100px;" multiple="multiple"  accept=".xml"/>
 
     <script type="text/javascript" src="./xml2Udl.js"></script>
 </body>

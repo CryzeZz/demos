@@ -867,9 +867,7 @@
             text:text
         }
     }
-    function property2Udl(o){
-        var name=o.getAttribute('name');
-
+    var parseComm=function(o){
         var ooDef={},paramArr=[];
         for (var i=0,len=o.children.length;i<len;i++) {
             
@@ -880,11 +878,21 @@
             }else if(tagName=='Parameter') {
                 var paramName=item.getAttribute('name');
                 var paramValue=item.getAttribute('value');
-                paramArr.push(paramName+'='+paramValue2Text(paramValue));
+                paramArr.push(paramName+' = '+paramValue2Text(paramValue));
             }else{
                 ooDef[tagName]=item.textContent;
             }
         }
+        return {
+            ooDef:ooDef,
+            paramArr:paramArr
+        } 
+    }
+    function property2Udl(o){
+        var name=o.getAttribute('name');
+
+        var oo=parseComm(o);
+        var ooDef=oo.ooDef,paramArr=oo.paramArr;
 
         var text=LINE_FEED;
         if(ooDef.Description){text+=ooDef.Description+LINE_FEED;}
@@ -918,22 +926,8 @@
     function parameter2Udl(o){
         var name=o.getAttribute('name');
 
-        var ooDef={},paramArr=[];
-        for (var i=0,len=o.children.length;i<len;i++) {
-            
-            var item=o.children[i];
-            var tagName=item.tagName;
-            if(tagName=='Description'){
-                ooDef[tagName]=description2Udl(item).text;
-            }else if(tagName=='Parameter') {
-                var paramName=item.getAttribute('name');
-                var paramValue=item.getAttribute('value');
-                paramArr.push(paramName+'='+paramValue2Text(paramValue));
-                
-            }else{
-                ooDef[tagName]=item.textContent;
-            }
-        }
+        var oo=parseComm(o);
+        var ooDef=oo.ooDef,paramArr=oo.paramArr;
 
         var text=LINE_FEED;
         if(ooDef.Description){text+=ooDef.Description+LINE_FEED;}
@@ -965,22 +959,8 @@
     function foreignKey2Udl(o){
         var name=o.getAttribute('name');
 
-        var ooDef={},paramArr=[];
-        for (var i=0,len=o.children.length;i<len;i++) {
-            
-            var item=o.children[i];
-            var tagName=item.tagName;
-            if(tagName=='Description'){
-                ooDef[tagName]=description2Udl(item).text;
-            }else if(tagName=='Parameter') {
-                var paramName=item.getAttribute('name');
-                var paramValue=item.getAttribute('value');
-                paramArr.push(paramName+'='+paramValue2Text(paramValue));
-                
-            }else{
-                ooDef[tagName]=item.textContent;
-            }
-        }
+        var oo=parseComm(o);
+        var ooDef=oo.ooDef,paramArr=oo.paramArr;
 
         var text=LINE_FEED;
         if(ooDef.Description){text+=ooDef.Description+LINE_FEED;}
@@ -1006,22 +986,8 @@
     function index2Udl(o){
         var name=o.getAttribute('name');
 
-        var ooDef={},paramArr=[];
-        for (var i=0,len=o.children.length;i<len;i++) {
-            
-            var item=o.children[i];
-            var tagName=item.tagName;
-            if(tagName=='Description'){
-                ooDef[tagName]=description2Udl(item).text;
-            }else if(tagName=='Parameter') {
-                var paramName=item.getAttribute('name');
-                var paramValue=item.getAttribute('value');
-                paramArr.push(paramName+'='+paramValue2Text(paramValue));
-                
-            }else{
-                ooDef[tagName]=item.textContent;
-            }
-        }
+        var oo=parseComm(o);
+        var ooDef=oo.ooDef,paramArr=oo.paramArr;
 
         var text=LINE_FEED;
         if(ooDef.Description){text+=ooDef.Description+LINE_FEED;}
@@ -1274,22 +1240,8 @@
         
         var name=o.getAttribute('name');
 
-        var ooDef={},paramArr=[];
-        for (var i=0,len=o.children.length;i<len;i++) {
-            
-            var item=o.children[i];
-            var tagName=item.tagName;
-            if(tagName=='Description'){
-                ooDef[tagName]=description2Udl(item).text;
-            }else if(tagName=='Parameter') {
-                var paramName=item.getAttribute('name');
-                var paramValue=item.getAttribute('value');
-                paramArr.push(paramName+'='+paramValue2Text(paramValue));
-                
-            }else{
-                ooDef[tagName]=item.textContent;
-            }
-        }
+        var oo=parseComm(o);
+        var ooDef=oo.ooDef,paramArr=oo.paramArr;
 
         var text=LINE_FEED;
         if(ooDef.Description){text+=ooDef.Description+LINE_FEED;}
@@ -1338,22 +1290,8 @@
     function query2Udl(o){
         var name=o.getAttribute('name');
 
-        var ooDef={},paramArr=[];
-        for (var i=0,len=o.children.length;i<len;i++) {
-            
-            var item=o.children[i];
-            var tagName=item.tagName;
-            if(tagName=='Description'){
-                ooDef[tagName]=description2Udl(item).text;
-            }else if(tagName=='Parameter') {
-                var paramName=item.getAttribute('name');
-                var paramValue=item.getAttribute('value');
-                paramArr.push(paramName+'='+paramValue2Text(paramValue));
-                
-            }else{
-                ooDef[tagName]=item.textContent;
-            }
-        }
+        var oo=parseComm(o);
+        var ooDef=oo.ooDef,paramArr=oo.paramArr;
 
         var text=LINE_FEED;
         if(ooDef.Description){text+=ooDef.Description+LINE_FEED;}
@@ -1403,22 +1341,8 @@
         
         var name=o.getAttribute('name');
 
-        var ooDef={},paramArr=[];
-        for (var i=0,len=o.children.length;i<len;i++) {
-            
-            var item=o.children[i];
-            var tagName=item.tagName;
-            if(tagName=='Description'){
-                ooDef[tagName]=description2Udl(item).text;
-            }else if(tagName=='Parameter') {
-                var paramName=item.getAttribute('name');
-                var paramValue=item.getAttribute('value');
-                paramArr.push(paramName+'='+paramValue2Text(paramValue));
-                
-            }else{
-                ooDef[tagName]=item.textContent;
-            }
-        }
+        var oo=parseComm(o);
+        var ooDef=oo.ooDef,paramArr=oo.paramArr;
 
         var text=LINE_FEED;
         if(ooDef.Description){text+=ooDef.Description+LINE_FEED;}
@@ -1443,22 +1367,8 @@
     function udlText2Udl(o){
         var name=o.getAttribute('name');
 
-        var ooDef={},paramArr=[];
-        for (var i=0,len=o.children.length;i<len;i++) {
-            
-            var item=o.children[i];
-            var tagName=item.tagName;
-            if(tagName=='Description'){
-                ooDef[tagName]=description2Udl(item).text;
-            }else if(tagName=='Parameter') {
-                var paramName=item.getAttribute('name');
-                var paramValue=item.getAttribute('value');
-                paramArr.push(paramName+'='+paramValue2Text(paramValue));
-                
-            }else{
-                ooDef[tagName]=item.textContent;
-            }
-        }
+        var oo=parseComm(o);
+        var ooDef=oo.ooDef,paramArr=oo.paramArr;
 
         var text='';
 
@@ -1477,22 +1387,8 @@
     function xData2Udl(o){
         var name=o.getAttribute('name');
 
-        var ooDef={},paramArr=[];
-        for (var i=0,len=o.children.length;i<len;i++) {
-            
-            var item=o.children[i];
-            var tagName=item.tagName;
-            if(tagName=='Description'){
-                ooDef[tagName]=description2Udl(item).text;
-            }else if(tagName=='Parameter') {
-                var paramName=item.getAttribute('name');
-                var paramValue=item.getAttribute('value');
-                paramArr.push(paramName+'='+paramValue2Text(paramValue));
-                
-            }else{
-                ooDef[tagName]=item.textContent;
-            }
-        }
+        var oo=parseComm(o);
+        var ooDef=oo.ooDef,paramArr=oo.paramArr;
 
         var text=LINE_FEED;
         if(ooDef.Description){text+=ooDef.Description+LINE_FEED;}

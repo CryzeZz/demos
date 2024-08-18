@@ -1637,7 +1637,9 @@ $(function () {
                 console.log(xo);
 
                 var highlightCode=hljs.highlight(xo.outerHTML,{language:'xml'});
-                $('#item-xml').html(hljs.lineNumbersValue(highlightCode.value));
+                //$('#item-xml').html(hljs.lineNumbersValue(highlightCode.value));
+                $('#item-xml').html(highlightCode.value);
+                renderLineNumbers('#item-xml');
                 var udl=node.udl
                 if(!udl){
                     udl=xml2Udl(xo);
@@ -1646,11 +1648,11 @@ $(function () {
                 if(udl){
                     if(udl.language) {
                         var highlightCode=hljs.highlight(udl.text,{language:udl.language});
-                        $('#item-udl').html(hljs.lineNumbersValue(highlightCode.value));
-                        $('#item-udl-nln').html(highlightCode.value);
+                        //$('#item-udl').html(hljs.lineNumbersValue(highlightCode.value));
+                        $('#item-udl').html(highlightCode.value);
+                        renderLineNumbers('#item-udl');
                     }else{
                         $('#item-udl').html(udl.text);
-                        $('#item-udl-nln').html(udl.text);
                     }
                     
                 }
@@ -1707,7 +1709,7 @@ $(function () {
 
         }
         $('#tree').tree('loadData',rootData);
-        $('#item-xml,#item-udl').html('');
+        clearItemCode();
 
     }
 
@@ -1719,22 +1721,15 @@ $(function () {
         onClick:function(v){
             if(v.text=='xml'){
                 $('#item-udl-c').hide();
-                $('#item-udl-nln-c').hide();
                 $('#item-xml-c').show();
             }else if(v.text=='udl'){
                 $('#item-xml-c').hide();
-                $('#item-udl-nln-c').hide();
                 $('#item-udl-c').show();
-            }else if(v.text=='udl-nln'){
-                $('#item-udl-nln-c').show();
-                $('#item-xml-c').hide();
-                $('#item-udl-c').hide();
             }
         },
         items:[
             {text:'udl',id:'btn-item-udl',selected:true},
-            {text:'xml',id:'btn-item-xml'},
-            {text:'udl-nln',id:'btn-item-udl-nln'}
+            {text:'xml',id:'btn-item-xml'}
             
         ]
     });
@@ -1747,13 +1742,45 @@ $(function () {
         $('#src').html(srcXmlHighlight);
     })
 
+    function renderLineNumbers(codeEle){
+        var codeArr=$(codeEle).text().split('\n');
+        var lines = codeArr.length - 1;
+        if(codeArr[lines]!=''){ //最后一行不是空 需要+1
+            lines++;
+        }
+        
+
+        var $pre=$(codeEle).parent();
+
+        var numberCls='number'+(lines+'').length;
+
+
+        var $numbering = $('<ul"/>').addClass('pre-numbering hljs');
+        for(i=1;i<=lines;i++){
+            $numbering.append($('<li/>').text(i));
+        }
+        if ($pre.hasClass('has-numbering')) {
+            $pre.children('.pre-numbering').remove();
+            $pre.removeClass('number1 number2 number3 number4,number5').addClass(numberCls).append($numbering);
+        }else{
+            $pre.addClass('has-numbering '+numberCls).append($numbering);
+        }
+
+    }
+
+    function clearItemCode(){
+        $('#item-xml,#item-udl').html('');
+        renderLineNumbers('#item-xml');
+        renderLineNumbers('#item-udl');
+    }
+
     function show(files) {
         readAsText(files, function (ret) {
             console.log(ret);
 
             srcXml=[],srcXmlName=[],srcXmlHighlight='';
             $('#tree').tree('loadData',[]);
-            $('#item-xml,#item-udl').html('');
+            clearItemCode();
 
 
 
@@ -1765,11 +1792,16 @@ $(function () {
 
             var highlightCode=hljs.highlight(srcXml.join('\n\n'),{language:'xml'});
 
-            srcXmlHighlight=hljs.lineNumbersValue(highlightCode.value)
+            //srcXmlHighlight=hljs.lineNumbersValue(highlightCode.value)
+            srcXmlHighlight=highlightCode.value;
 
 
             $('#win').dialog('open').dialog('setTitle',srcXmlName.join('+')+' - 原文');
             $('#src').html(srcXmlHighlight);
+            renderLineNumbers('#src');
+            
+                
+            
 
             //$('#src').val(ret[0].result);
         });

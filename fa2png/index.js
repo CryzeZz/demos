@@ -123,7 +123,7 @@ $(function(){
 
         $.messager.prompt('确认','请输入文件名',function(r){
             if(r) {
-				html2canvas($('#prev')[0], {useCORS:true}).then(function(canvas){
+				html2canvas($('#prev')[0], {useCORS:true,backgroundColor:null}).then(function(canvas){
 					
 				    var url = canvas.toDataURL('image/png');//图片地址
 				    saveFile(url,filename);

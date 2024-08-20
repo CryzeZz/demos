@@ -126,7 +126,7 @@ $(function(){
 				html2canvas($('#prev')[0], {useCORS:true,backgroundColor:null}).then(function(canvas){
 					
 				    var url = canvas.toDataURL('image/png');//图片地址
-				    saveFile(url,filename);
+				    saveFile(url,r);
 				});
 
 

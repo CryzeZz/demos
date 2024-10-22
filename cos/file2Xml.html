@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>file2Xml</title>
+    
+    <link rel="stylesheet" type="text/css" href="/hisui/dist/css/hisui.min.css">
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/1.11.3/jquery.js" type="application/javascript"></script>
+    <script type="text/javascript" src="/hisui/dist/js/jquery.hisui.min.js"></script>
+    <script type="text/javascript" src="/hisui/dist/js/locale/hisui-lang-zh_CN.js"></script>
+
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/crypto-js/4.1.1/crypto-js.min.js" type="application/javascript"></script>
+    
+
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .l-value{
+            padding-right: 20px;
+        }
+
+.form-table{
+    color: #000;
+}
+    </style>
+</head>
+<body class="hisui-layout">
+    
+    
+            <div data-options="region:'north',border:false,split:false" style="padding: 10px 10px 0 10px;">
+                <table class="form-table">
+                    <tr class="form-tr">
+                        <td class="r-label">
+                            数据库版本
+                        </td>
+                        <td class="l-value">
+                            <input type="text" id="zv" class="textbox hisui-combobox" data-options="width:200"/>
+                        </td>
+                        <td class="r-label">
+                            Web应用程序
+                        </td>
+                        <td class="l-value">
+                            <input type="text" id="application" class="textbox" style="width: 193px;" value=""/>
+                        </td>
+                        <td class="r-label">
+                            <a title="选择文件后，列【相对web应用程序的路径】默认值" class="hisui-tooltip">文件路径</a>
+                        </td>
+                        <td class="l-value">
+                            <input type="text" id="def-path" class="textbox" style="width: 193px;" value=""/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div data-options="region:'center',border:false,split:false" style="padding: 10px;">    
+                <div id="file-table"></div>
+            </div>
+
+            
+        <div id="tip-win" class="hisui-dialog" title="说明" style="width:600px;padding:10px;line-height: 25px;"　
+        data-options="iconCls:'icon-help',resizable:true,modal:true,closed:true">   
+            一个将文件转换成Studio导出的xml格式的工具<br>
+            通过此工具可以将本地文件转换成xml格式文件，然后通过Studio导入到服务器中<br>
+            <hr color="#ccc">
+            
+            1.选择数据版本信息并录入web应用程序（SMP--系统--安全管理--Web 应用程序）<br>
+            2.点击“选择文件”，选择需要转换的文件<br>
+            3.录入每个文件导入后相对于web应用程序的路径和导入后的文件名<br>
+            4.勾选最终需要转换的文件，并点击“转换”<br>
+            5.录入转换出的xml文件名，点击“确定”<br>
+            6.转换出的xml文件就可以通过Studio直接导入库中了
+            </br>
+        </div>
+        
+
+    <input type="file" id="file" style="position:absolute;top:-100px;" multiple="multiple"  accept="*.*"/>
+
+    <script type="text/javascript" src="../common/fun.js"></script>
+    <script type="text/javascript" src="./file2Xml.js"></script>
+</body>
+</html>

@@ -139,6 +139,11 @@ var menus=[
                 attributes:{
                     url:'cos/xml2Udl.html'
                 }
+            },{
+                text:'file2Xml',
+                attributes:{
+                    url:'cos/file2Xml.html'
+                }
             }
         ]
     },{

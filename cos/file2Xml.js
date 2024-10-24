@@ -22,6 +22,7 @@ $(function () {
         data:[zvData['2016'],zvData['iris']],
         valueField:'value',
         textField:'text',
+        panelHeight:'auto',
         onSelect:function(rec){
             console.log(rec);
         }
@@ -166,7 +167,7 @@ $(function () {
             var newCnt=0;
 
             $.each(ret,function(){
-                var ind=$.hisui.indexOfArray(filesData,'id',this.id);
+                var ind=$.easyui.indexOfArray(filesData,'id',this.id);
                 if(ind>-1){
                     filesData[ind]=this;
                 }else{

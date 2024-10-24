@@ -95,7 +95,7 @@ $(function(){
 
         })
     }
-    debounced_preview=$.hisui.debounce(preview,200);
+    debounced_preview=_.debounce(preview,200);
 
 
     $('#preview').click(function(){

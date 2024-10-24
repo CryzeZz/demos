@@ -1758,23 +1758,7 @@ $(function () {
 
     
 
-    $('#kw').keywords({
-        singleSelect:true,
-        onClick:function(v){
-            if(v.text=='xml'){
-                $('#item-udl-c').hide();
-                $('#item-xml-c').show();
-            }else if(v.text=='udl'){
-                $('#item-xml-c').hide();
-                $('#item-udl-c').show();
-            }
-        },
-        items:[
-            {text:'udl',id:'btn-item-udl',selected:true},
-            {text:'xml',id:'btn-item-xml'}
-            
-        ]
-    });
+
 
     $('#btn-xml').click(function(){
         $('#btn-xml').addClass('selected');
@@ -1863,7 +1847,7 @@ $(function () {
             srcXmlHighlight=highlightCode.value;
 
 
-            $('#win').dialog('open').dialog('setTitle',srcXmlName.join('+')+' - 原文');
+            $('#win').dialog('open').dialog('setTitle',srcXmlName.join('+')+' - 原文').dialog('center');
             $('#src').html(srcXmlHighlight);
             renderLineNumbers('#src');
             

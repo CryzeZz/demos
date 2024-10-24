@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Font Awesome 2 PNG</title>
-    <link rel="stylesheet" type="text/css" href="/hisui/dist/css/hisui.lite.min.css">
+    <link rel="stylesheet" type="text/css" href="../lib/jquery-easyui-1.7.0/themes/metro/easyui.css"></link>
+    <link rel="stylesheet" type="text/css" href="../lib/jquery-easyui-1.7.0/themes/icon.css"></link>
     <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/1.11.3/jquery.js" type="application/javascript"></script>
-    <script type="text/javascript" src="/hisui/dist/js/jquery.hisui.min.js"></script>
-    <script type="text/javascript" src="/hisui/dist/js/locale/hisui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../lib/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../lib/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <link href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/toastr.js/2.1.4/toastr.min.css" type="text/css" rel="stylesheet" />
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/toastr.js/2.1.4/toastr.min.js" type="application/javascript"></script>
+    
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/underscore.js/1.13.2/underscore-min.js" type="application/javascript"></script>
 
     <link rel="stylesheet" type="text/css" href="../lib/coolbody/coolbody.css">
     <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/js-polyfills/0.1.43/polyfill.min.js" type="application/javascript"></script>
@@ -29,7 +34,7 @@
                         图标类
                     </td>
                     <td class="l-value">
-                        <input type="text" id="font-class" class="textbox hisui-combobox" data-options="width:200"/>
+                        <input type="text" id="font-class" class="textbox easyui-combobox" data-options="width:200"/>
                     </td>
                 </tr>
                 <tr class="form-tr">
@@ -37,7 +42,7 @@
                         字体颜色
                     </td>
                     <td class="l-value">
-                        <input type="text" id="font-color" class="textbox" style="width: 193px;" value="#999999"/>
+                        <input type="text" id="font-color" class="textbox" style="width: 200px;" value="#999999"/>
                     </td>
                 </tr>
                 <tr class="form-tr">
@@ -45,7 +50,7 @@
                         背景颜色
                     </td>
                     <td class="l-value">
-                        <input type="text" id="font-bg" class="textbox" style="width: 193px;" value="transparent"/>
+                        <input type="text" id="font-bg" class="textbox" style="width: 200px;" value="transparent"/>
                     </td>
                 </tr>
                 <tr class="form-tr">
@@ -53,7 +58,7 @@
                         字体大小
                     </td>
                     <td class="l-value">
-                        <input type="text" id="font-size" class="textbox" style="width: 193px;" value="16"/>
+                        <input type="text" id="font-size" class="textbox" style="width: 200px;" value="16"/>
                     </td>
                 </tr>
                 <tr class="form-tr">
@@ -61,14 +66,14 @@
                         字体边距
                     </td>
                     <td class="l-value">
-                        <input type="text" id="font-padding" class="textbox" style="width: 193px;" value="0"/>
+                        <input type="text" id="font-padding" class="textbox" style="width: 200px;" value="0"/>
                     </td>
                 </tr>
 
                 <tr class="form-tr">
                     <td class="" style="text-align: center;" colspan="2">
-                        <a href="javascript:void(0);" class="hisui-linkbutton" id="preview">预览</a>
-                        <a href="javascript:void(0);" class="hisui-linkbutton" id="download" style="margin-left: 10px;">下载</a>
+                        <a href="javascript:void(0);" class="easyui-linkbutton" id="preview">预览</a>
+                        <a href="javascript:void(0);" class="easyui-linkbutton" id="download" style="margin-left: 10px;">下载</a>
                     </td>
                     
                 </tr>

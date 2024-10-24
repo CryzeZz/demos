@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>file2Xml</title>
     
-    <link rel="stylesheet" type="text/css" href="/hisui/dist/css/hisui.min.css">
+    <link rel="stylesheet" type="text/css" href="../lib/jquery-easyui-1.7.0/themes/metro/easyui.css"></link>
+    <link rel="stylesheet" type="text/css" href="../lib/jquery-easyui-1.7.0/themes/icon.css"></link>
     <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/1.11.3/jquery.js" type="application/javascript"></script>
-    <script type="text/javascript" src="/hisui/dist/js/jquery.hisui.min.js"></script>
-    <script type="text/javascript" src="/hisui/dist/js/locale/hisui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../lib/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../lib/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <link href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/toastr.js/2.1.4/toastr.min.css" type="text/css" rel="stylesheet" />
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/toastr.js/2.1.4/toastr.min.js" type="application/javascript"></script>
 
     <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/crypto-js/4.1.1/crypto-js.min.js" type="application/javascript"></script>
     
@@ -31,7 +34,7 @@
 }
     </style>
 </head>
-<body class="hisui-layout">
+<body class="easyui-layout">
     
     
             <div data-options="region:'north',border:false,split:false" style="padding: 10px 10px 0 10px;">
@@ -41,7 +44,7 @@
                             数据库版本
                         </td>
                         <td class="l-value">
-                            <input type="text" id="zv" class="textbox hisui-combobox" data-options="width:200"/>
+                            <input type="text" id="zv" class="textbox easyui-combobox" data-options="width:200"/>
                         </td>
                         <td class="r-label">
                             Web应用程序
@@ -50,7 +53,7 @@
                             <input type="text" id="application" class="textbox" style="width: 193px;" value=""/>
                         </td>
                         <td class="r-label">
-                            <a title="选择文件后，列【相对web应用程序的路径】默认值" class="hisui-tooltip">文件路径</a>
+                            <a title="选择文件后，列【相对web应用程序的路径】默认值" class="easyui-tooltip">文件路径</a>
                         </td>
                         <td class="l-value">
                             <input type="text" id="def-path" class="textbox" style="width: 193px;" value=""/>
@@ -63,7 +66,7 @@
             </div>
 
             
-        <div id="tip-win" class="hisui-dialog" title="说明" style="width:600px;padding:10px;line-height: 25px;"　
+        <div id="tip-win" class="easyui-dialog" title="说明" style="width:600px;padding:10px;line-height: 25px;"　
         data-options="iconCls:'icon-help',resizable:true,modal:true,closed:true">   
             一个将文件转换成Studio导出的xml格式的工具<br>
             通过此工具可以将本地文件转换成xml格式文件，然后通过Studio导入到服务器中<br>

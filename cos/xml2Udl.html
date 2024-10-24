@@ -5,10 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>xml2Udl</title>
-    <link rel="stylesheet" type="text/css" href="/hisui/dist/css/hisui.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../lib/jquery-easyui-1.7.0/themes/metro/easyui.css"></link>
+    <link rel="stylesheet" type="text/css" href="../lib/jquery-easyui-1.7.0/themes/icon.css"></link>
     <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/1.11.3/jquery.js" type="application/javascript"></script>
-    <script type="text/javascript" src="/hisui/dist/js/jquery.hisui.min.js"></script>
-    <script type="text/javascript" src="/hisui/dist/js/locale/hisui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../lib/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../lib/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <link href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/toastr.js/2.1.4/toastr.min.css" type="text/css" rel="stylesheet" />
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/toastr.js/2.1.4/toastr.min.js" type="application/javascript"></script>
+
+    
 
     <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/clipboard.js/2.0.10/clipboard.min.js" type="application/javascript"></script>
 
@@ -123,7 +129,7 @@
 
     </style>
 </head>
-<body class="hisui-layout">
+<body class="easyui-layout">
     
     <div data-options="region:'west',border:false,split:false" style="width:400px;padding:10px 10px 0;line-height:20px;overflow-x: hidden;overflow-y: auto;">
         <a href="javascript:void(0)" id="file-sel">选择/拖拽xml文件</a>  <br>
@@ -152,7 +158,7 @@
         
     </div>
 
-    <div id="win" class="hisui-dialog" style="padding: 0px;line-height:1.8em;"><pre style="margin: 0;"><code id="src" style="width: 100%;height: 100%;box-sizing: border-box;" class="hljs"></code></pre></div>
+    <div id="win" class="easyui-dialog" style="padding: 0px;line-height:1.8em;"><pre style="margin: 0;"><code id="src" style="width: 100%;height: 100%;box-sizing: border-box;" class="hljs"></code></pre></div>
 
     <input type="file" id="file" style="position:absolute;top:-100px;" multiple="multiple"  accept=".xml"/>
 

@@ -13,19 +13,43 @@
     <script type="text/javascript" src="../lib/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../lib/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
 
-    <link href="../lib/toastr-master/build/toastr.min.css" type="text/css" rel="stylesheet" />
-    <script src="../lib/toastr-master/build/toastr.min.js" type="text/javascript"></script>
-
-    <script src="../lib/clipboard.js-master/dist/clipboard.min.js" type="text/javascript"></script>
-
+    <link href="https://cdn.bootcdn.net/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <script>
+       (function(){
+         if (typeof window.toastr === 'undefined') {
+          document.write('<link rel="stylesheet" href="../lib/toastr-master/build/toastr.min.css">');
+          document.write('<script src="../lib/toastr-master/build/toastr.min.js"><\/script>');
+         }
+       })();
+     </script>
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+    <script>
+        (function(){
+            if (typeof ClipboardJS === 'undefined') {
+                document.write('<script src="../lib/clipboard.js-master/dist/clipboard.min.js" type="text/javascript"><\/script>');
+            }
+        })();
+    </script>
     <!--hightlight.js-->
-    <link href="../lib/highlight/styles/base16/darcula.min.css" type="text/css" rel="stylesheet" />
-
-    <script src="../lib/highlight/highlight.min.js" type="text/javascript"></script>
-
-    <script src="../lib/highlight/languages/xml.min.js" type="text/javascript"></script>
-    <script src="../lib/highlight/languages/javascript.min.js" type="text/javascript"></script>
-    <script src="../lib/highlight/languages/cos.min.js" type="text/javascript"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.3.1/styles/base16/darcula.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.3.1//languages/xml.min.js" type="text/javascript"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.3.1//languages/javascript.min.js" type="text/javascript"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.3.1//languages/cos.min.js" type="text/javascript"></script>
+    
+    <script>
+        (function(){
+            if (typeof hljs === 'undefined') {
+                document.write('<link href="../lib/highlight/styles/base16/darcula.min.css" type="text/css" rel="stylesheet" />');
+                document.write('<script src="../lib/highlight/highlight.min.js" type="text/javascript"><\/script>');
+                document.write('<script src="../lib/highlight/languages/xml.min.js" type="text/javascript"><\/script>');
+                document.write('<script src="../lib/highlight/languages/javascript.min.js" type="text/javascript"><\/script>');
+                document.write('<script src="../lib/highlight/languages/cos.min.js" type="text/javascript"><\/script>');
+            }
+        })();
+    </script>
     <!--
     <script src="https://cdnjs.cloudflare.com/ajax/libs//highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js" type="application/javascript"></script>
 -->

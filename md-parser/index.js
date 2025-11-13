@@ -2,7 +2,7 @@ $(function(){
     function show(files){
         readAsText(files,function(ret){
             console.log(ret);
-            $('#container').html( marked(ret[0].result) );
+            $('#container').html( marked.parse(ret[0].result) );
             $('pre code').each(function(i, block) {
                 hljs.highlightBlock(block);
             });
